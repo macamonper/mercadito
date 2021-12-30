@@ -1,0 +1,22 @@
+{
+  "name": "doppelganger-meli",
+  "version": "1.0.0",
+  "description": "A mockup version of Mercado Libre's website to learn how to use node.js, Sass and APIS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macamonper/mercadito.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/macamonper/mercadito/issues"
+  },
+  "homepage": "https://github.com/macamonper/mercadito#readme",
+  "dependencies": {
+    "node-sass": "^7.0.1"
+  }
+}
