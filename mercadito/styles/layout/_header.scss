@@ -1,6 +1,6 @@
 header{
     height: 20vh;
-    background-color: #264653;
+    background-color: $background;
     display: flex;
     border: none;
 
@@ -10,18 +10,28 @@ header{
         height: auto;
     }
 
-    form {
-        display:flex;
-        flex-direction:row;
-        border:1.5px solid #E76F51;
-        border-radius: 2px;
-        width: 35em;
-        height: 2em;
-        margin: 1.5em 0em 3em 1em;
-    
-      }
-}
+    section{
+        display: flex;
+        flex-direction: column;
 
+            
+        form {
+            display:flex;
+            flex-direction:row;
+            border:1.5px solid $tipography;
+            border-radius: 2px;
+            width: 35em;
+            height: 2em;
+            margin:1em;
+        
+        }
+
+        nav{
+            margin-left: 1em;
+        }
+    }
+
+}
 @media (max-width: 455px) {
 
     img{

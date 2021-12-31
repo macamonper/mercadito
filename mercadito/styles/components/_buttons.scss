@@ -1,9 +1,20 @@
-button {
+@mixin button {
     border:1px solid transparent ;
-    color:#E76F51;
-    background-color: #ffffff;
+    color:$tipography;
     cursor: pointer;
+}
+#search-bar-btn{
+ @include button;
+    background-color: #ffffff;
   }
-  ::placeholder{
-      color: #b9b7b7;
-  }
+::placeholder{
+      color: $place-holder;
+}
+
+#drop-btn{
+    @include button;
+    padding-right: 7em;
+    padding-bottom: 0.5em;
+    background-color:$background;
+
+}
