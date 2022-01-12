@@ -1,36 +1,15 @@
 #aside{
-    width:15%;
+    width:20%;
     background-color:$background-products;
     height: 160vh;
     padding-left: 3em;
 
     
     position: sticky;
-    top: 0;
+    top: -20px;
 
     word-wrap: break-word;
-    h2{
-        font-size: 2rem;
-        width: 4em;
-       
-    }
-  
-    form{
-        margin-top: 1em;
-        margin-left: 1em;
 
-        div{
-            margin-bottom: 0.5em;
-
-        }
-        input{
-            margin-left: 1em;
-        }
-        label{
-            margin-left: 0.4em;
-        }
-    }
-    
 
  
 }

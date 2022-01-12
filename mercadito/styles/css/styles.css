@@ -336,30 +336,13 @@ template {
 }
 
 #aside {
-  width: 15%;
+  width: 20%;
   background-color: #f6f2f7;
   height: 160vh;
   padding-left: 3em;
   position: sticky;
-  top: 0;
+  top: -20px;
   word-wrap: break-word;
-}
-#aside h2 {
-  font-size: 2rem;
-  width: 4em;
-}
-#aside form {
-  margin-top: 1em;
-  margin-left: 1em;
-}
-#aside form div {
-  margin-bottom: 0.5em;
-}
-#aside form input {
-  margin-left: 1em;
-}
-#aside form label {
-  margin-left: 0.4em;
 }
 
 .column {
@@ -399,10 +382,25 @@ main {
   background-color: #2E294E;
 }
 
+#aside h2 {
+  font-size: 2rem;
+  width: 4em;
+}
+#aside form {
+  margin-left: 1em;
+}
+#aside form div {
+  margin-bottom: 0.5em;
+}
+#aside form label {
+  margin-left: 0.4em;
+}
+
 #products {
   background-color: #ffffff;
   border-radius: 10px;
   margin: 4em;
+  width: 80%;
 }
 
 #dropdown-menu {
@@ -462,6 +460,7 @@ p {
   height: 15em;
   padding: 0.5em 0.5em;
   border-bottom: 0.5px solid #d4d3d68f;
+  width: 95%;
   margin: 0.5em;
   display: flex;
 }
@@ -504,6 +503,10 @@ p {
 
 *:focus {
   outline: thin dotted;
+}
+
+.check {
+  margin-left: 1em;
 }
 
 header {
@@ -618,10 +621,6 @@ header section nav button {
   border-radius: 3px;
 }
 
-.hide {
-  display: none;
-}
-
 *:focus {
   outline: thin dotted;
 }
@@ -632,6 +631,10 @@ header section nav button {
 
 .margin-left05 {
   margin-left: 0.5em;
+}
+
+.hide {
+  display: none;
 }
 
 /*# sourceMappingURL=styles.css.map */

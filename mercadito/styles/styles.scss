@@ -4,6 +4,7 @@
 @import"layout/aside";
 @import "layout/main";
 @import "components/buttons";
+@import"components/filters";
 @import "layout/products";
 @import "components/dropdown-menu";
 @import "components/card";
@@ -23,4 +24,9 @@
 
 .margin-left05{
   margin-left: 0.5em;
+}
+
+
+.hide{
+  display: none;
 }

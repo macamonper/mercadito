@@ -97,8 +97,11 @@
                     <h4>Ubicación</h4>
 
                     <div>
-                        <input type="select" id="state" name="filters" value="state" class="check">
                         <label for="state"></label>
+
+                        <select name="states" class="check" id="state-select" >
+
+                        </select>
                     </div>
                         
                 </div>
@@ -115,6 +118,10 @@
 
                     <div class="column">
                         
+                        <div class="row hide ">
+                            <input type="radio" id="new" name="filters" value="all" class="check" checked>
+                            <label for="all">Nuevo</label>
+                        </div>
                         <div class="row">
                             <input type="radio" id="new" name="filters" value="new" class="check">
                             <label for="new">Nuevo</label>

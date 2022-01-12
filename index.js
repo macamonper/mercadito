@@ -11,8 +11,13 @@ const aside = document.getElementById("aside");
 // const next = document.getElementById('next');
 // const prev = document.getElementById('prev');
 const productsView = document.getElementById("products");
-const titleAside = document.getElementById("search-value-title")
-
+const titleAside = document.getElementById("search-value-title");
+const stateSelect = document.getElementById("state-select");
+const checkbxStore = document.getElementById("official-store");
+const checkbxShipping = document.getElementById("shipping");
+const checkbxPayment = document.getElementById("payment");
+const checkbxNew = document.getElementById("new");
+const checkbxUsed = document.getElementById ("used");
 
 
 
@@ -36,6 +41,7 @@ searchBar.onsubmit = (e) => {
     e.preventDefault()
     searchProducts(searchValue.value)
     titleAside.innerHTML = searchValue.value
+    fetchSelectState(searchValue.value)
 
 
 }
@@ -97,6 +103,7 @@ const searchByCategories = (category_ID) =>{
     .then(data =>{
 
         HTMLproducts(data.results)
+        aside.classList.add ("hide")
 
     })
 }
@@ -160,7 +167,7 @@ const getIDofCategory = () => {
     for (let category of categories){
 
         category.onclick = () => {
-
+        console.log(category.dataset.id)
         searchByCategories(category.dataset.id)
         //getChildrenCategories(category.dataset.id)
 
@@ -176,27 +183,84 @@ dropdownBtn.onmouseenter = () => {
 
 
 //FILTERS
+
+const fetchSelectState = (searchValue) =>{
+
+    fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${searchValue}`)
+    .then(res =>res.json())
+    .then(data =>{
+    HTMLforStateSelect(data.available_filters[2].values)
+
+
+    })
+
+
+}
+const HTMLforStateSelect = (data) =>{
+
+ 
+    const stateOption = data.reduce ((acc,curr) => {
+        return acc + `   
+        <option class="state-name" data-id=${curr.id}>${curr.name}</option>
+
+        `
+    },"");
+
+    stateSelect.innerHTML = stateOption;
+    getIDofState()
+
+
+}
+
+const getIDofState = () => {
+
+    const states = document.getElementsByClassName("state-name");
+ 
+    stateSelect.addEventListener('change',(e) => {
+        for (let state of states){
+            console.log(state.dataset.id)
+    
+            
+        }
+    
+    });
+    
+
+}
+
+const getIDofState2 = () => {
+
+    const states = document.getElementsByClassName("state-name");
+ 
+    stateSelect.addEventListener('click',(event) =>{
+        for (let state of states){
+            state.onclick = () => {
+                console.log(state.dataset.id)
+        
+            }
+        }
+    })
+      
+    
+
+}
+
+
  
 let checkBoxs = document.querySelectorAll('.check');
 
-const checkbxStore = document.getElementById("official-store");
-const checkbxShipping = document.getElementById("shipping");
-const checkbxState = document.getElementById("state");
-const checkbxPayment = document.getElementById("payment");
-const checkbxNew = document.getElementById("new");
-const checkbxUsed = document.getElementById ("used");
 
 
 
 checkBoxs.forEach((checkbox) => { 
     checkbox.addEventListener('change', (event) => {
-      if (event.target.checked) {
-          applyFilters(searchValue.value)
-      }
+        applyFiltersInProducts(searchValue.value)
+        
+      
     })
 })
 
-const applyFilters= (searchValue) =>{
+const applyFiltersInProducts = (searchValue) => {
 
     let url = `https://api.mercadolibre.com/sites/MLA/search?q=${searchValue}`;
 
@@ -217,6 +281,10 @@ const applyFilters= (searchValue) =>{
             url = url + "&official_store=all"
 
         }
+        if(stateSelect.click()){
+            url = url + "&state="
+        }
+
 
     console.log(url)
     fetch(url)
@@ -232,5 +300,3 @@ const applyFilters= (searchValue) =>{
 
 
 
-
-//

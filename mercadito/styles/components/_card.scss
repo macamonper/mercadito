@@ -3,6 +3,7 @@
     height:15em ;
     padding: 0.5em 0.5em;
     border-bottom: 0.5px solid $separation-line;
+    width: 95%;
     margin: 0.5em;
     display: flex;
 
@@ -10,9 +11,7 @@
         padding: 0.5em;
     }
     img{
-
         height: 100%;
-        
         border-radius: 2px;
     }
 
