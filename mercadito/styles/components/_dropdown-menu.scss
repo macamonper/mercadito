@@ -2,30 +2,58 @@
 #dropdown-menu{
     display: inline-block;
     position: relative;
+    z-index: 3;
 }
 
-#dropdown-cat {
+@mixin dropdown {
     display: none;
     position: absolute;
     width: 100%;
     overflow: auto;
     border-radius: 3px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color:$background-header ;
+}
+
+#dropdown-cat {
+  
+    @include dropdown;
 }
 
 #dropdown-menu:hover #dropdown-cat {
     display: block;
+    
 }
 
+.category{
+    padding:0.3em;
+    cursor:pointer;
+}
+
+
+.cat-name:hover{
+    color: $tipography;
+}
 .cat-name {
     display: block;
     color: #FFFFFF;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.8rem;
-    padding: 0.4em;
-    background-color: $background;
+    font-size: 0.9rem;
+    padding:  0.1em;
+    background-color: $background-header;
     text-decoration: none;
 }
-.cat-name:hover {
-    background-color: $background-hover;
+
+
+p{
+    margin: 0;
+}
+
+#dropdown-subcat{
+    width: 100%;
+    height: 100px;
+    overflow: auto;
+    border-radius: 3px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color:$background-header ;
 }

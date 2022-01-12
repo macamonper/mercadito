@@ -1,0 +1,51 @@
+.card{
+    border: 2px solid transparent;
+    height:15em ;
+    padding: 0.5em 0.5em;
+    border-bottom: 0.5px solid $separation-line;
+    margin: 0.5em;
+    display: flex;
+
+    .card-padding{
+        padding: 0.5em;
+    }
+    img{
+
+        height: 100%;
+        
+        border-radius: 2px;
+    }
+
+    h2{
+        font-size: 1.2rem;
+        margin: 1em 0;
+        margin-bottom: 1em;
+        font-weight:600;
+        
+    }
+
+    h3{
+        font-size: 1.5rem;
+        margin: 2.5em 0;
+        font-weight: 700;
+
+    }
+
+
+}
+
+.img-container{
+    height: 100%;
+    background-color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+
+
+
+}
+.free{
+    color:$free_shipping
+}

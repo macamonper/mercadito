@@ -1,7 +1,26 @@
 @import "general/normalize";
+@import "general/typography";
 @import "general/colors";
+@import"layout/aside";
+@import "layout/main";
 @import "components/buttons";
+@import "layout/products";
 @import "components/dropdown-menu";
 @import "components/card";
 @import "components/inputs";
 @import "layout/header";
+@import "components/slideshow";
+
+*:focus{
+    outline: thin dotted ;
+  }
+
+  
+.row{
+  display: flex;
+  
+}
+
+.margin-left05{
+  margin-left: 0.5em;
+}

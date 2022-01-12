@@ -1,11 +1,12 @@
-@mixin button {
-    border:1px solid transparent ;
+@mixin button($border:1px solid transparent) {
+    border:$border ;
     color:$tipography;
     cursor: pointer;
 }
 #search-bar-btn{
  @include button;
     background-color: #ffffff;
+
   }
 ::placeholder{
       color: $place-holder;
@@ -14,7 +15,13 @@
 #drop-btn{
     @include button;
     padding-right: 7em;
-    padding-bottom: 0.5em;
-    background-color:$background;
+    padding-bottom: 0.3em;
+    background-color:$background-header;
 
 }
+.btn-subCategories{
+  @include button;
+  background-color: $background-header;
+
+}
+

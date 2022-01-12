@@ -1,13 +1,13 @@
 header{
     height: 20vh;
-    background-color: $background;
+    background-color: $background-header;
     display: flex;
-    border: none;
+    border: 1px solid transparent;
+    box-shadow: 1px 1px 10px ;
 
     img{
         padding-left: 1em;
-        width: 7em;
-        height: auto;
+        width: 7.5em;
     }
 
     section{
@@ -20,14 +20,23 @@ header{
             flex-direction:row;
             border:1.5px solid $tipography;
             border-radius: 2px;
-            width: 35em;
-            height: 2em;
-            margin:1em;
+            width: 40em;
+            height: 3em;
+            margin:2em 0 0 1em;
         
+            input{
+                padding: 0.7em;
+
+            }
         }
 
         nav{
-            margin-left: 1em;
+            margin: 0.5em;
+
+            
+            button{
+                font-weight: bold;
+            }
         }
     }
 

@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercadito</title>
 <link rel="stylesheet" href="mercadito/styles/css/styles.css">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100&display=swap');
+</style>
+    
 <script src="https://kit.fontawesome.com/5bbce2ab5d.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -24,13 +28,122 @@
                     <button id="drop-btn">Categorias</button>
 
                     <div id="dropdown-cat">
-                     
+
 
                     </div>
+
+                    <!-- <div id="dropdown-subcat"></div> -->
+
                 </div>
             </nav>
         </section>
  </header>
+
+
+<main>
+    <section id="slide-show">
+
+        <article id="slides">
+            <ul id="slides">
+                <li class="slide showing">
+                    <img src="mercadito/images/promotions/jardin.jpg" class="slide showing"></img>
+
+                </li>
+                <li class="slide">
+                    <img src="mercadito/images/promotions/climatizacion.jpg"class="slide"></img>
+
+                </li>
+                <li class="slide">
+                    <img src="mercadito/images/promotions/autopartes.jpg"class="slide"></img>
+
+                </li>
+                <li class="slide">
+                    <img src="mercadito/images/promotions/reyes.jpg"class="slide"><img>
+
+                </li>
+            </ul>
+
+        </article>
+        
+        <button  class="controls" id="prev" ><i class=" fas fa-chevron-left"></i></button>
+        <button class="controls" id="next"><i class="fas fa-chevron-right"></i></button>
+            
+    
+    </section>
+
+    <div class="row">
+        <aside id="aside" class="hide">
+            <h2 id="search-value-title"></h2>
+
+            <h3>Filtros</h3>
+
+            <form>
+
+                <div>
+                    <h4>Tiendas oficiales</h4>
+
+                    <input type="checkbox" id="official-store" name="filters" value="official-store" class="check">
+                    <label for="official-store">Tiendas oficiales</label>
+                </div>
+
+
+                <div>
+                    <h4>Envio</h4>
+                    <input type="checkbox" id="shipping" name="filters" value="shipping" class="check">
+                    <label for="free-shipping">Envio gratis</label>
+                </div>
+
+                <div>
+                    <h4>Ubicación</h4>
+
+                    <div>
+                        <input type="select" id="state" name="filters" value="state" class="check">
+                        <label for="state"></label>
+                    </div>
+                        
+                </div>
+                
+                <div>
+                    <h4>Pago</h4>
+
+                    <input type="checkbox" id="payment" name="filters" value="payment"class="check">
+                    <label for="no-interest">Sin interés</label>
+                </div>
+                
+                <div class="column">
+                    <h4>Condicion</h4>
+
+                    <div class="column">
+                        
+                        <div class="row">
+                            <input type="radio" id="new" name="filters" value="new" class="check">
+                            <label for="new">Nuevo</label>
+                        </div>
+
+                        <div class="row">
+                            <input type="radio" id="used" name="filters" value="used" class="check">
+                            <label for="used">Usado</label>
+                        </div>
+                    </div>
+                
+                </div>
+
+
+            </form>
+            
+        </aside>
+
+        
+
+        
+        <section id="products" class="hide">
+                
+        </section>
+    
+    </div>
+
+    
+</main>
 
     <script src="index.js"></script>
 </body>

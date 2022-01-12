@@ -1,5 +1,8 @@
-input {
+#search-value {
     flex-grow:2;
     border:1px solid #ffffff;
 
-  }
+}
+*:focus{
+  outline: thin dotted;
+}
