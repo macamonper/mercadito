@@ -2,8 +2,14 @@
 #products{
     background-color: #ffffff;
     border-radius: 10px;
-    margin: 4em;
-    width: 80%;
+    margin: 4em 0em;
+    width: 78%;
  
 
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center
 }

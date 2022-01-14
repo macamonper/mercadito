@@ -21,6 +21,10 @@
   display: flex;
   
 }
+.column{
+  display: flex;
+  flex-direction: column;
+}
 
 .margin-left05{
   margin-left: 0.5em;

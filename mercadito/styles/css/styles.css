@@ -339,15 +339,10 @@ template {
   width: 20%;
   background-color: #f6f2f7;
   height: 160vh;
-  padding-left: 3em;
+  padding-left: 1em;
   position: sticky;
   top: -20px;
   word-wrap: break-word;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
 }
 
 main {
@@ -363,7 +358,7 @@ main {
 }
 
 ::placeholder {
-  color: #f6f2f7;
+  color: #a5a1a5;
 }
 
 #drop-btn {
@@ -384,7 +379,7 @@ main {
 
 #aside h2 {
   font-size: 2rem;
-  width: 4em;
+  width: 100%;
 }
 #aside form {
   margin-left: 1em;
@@ -395,12 +390,21 @@ main {
 #aside form label {
   margin-left: 0.4em;
 }
+#aside form select {
+  cursor: pointer;
+}
 
 #products {
   background-color: #ffffff;
   border-radius: 10px;
-  margin: 4em;
-  width: 80%;
+  margin: 4em 0em;
+  width: 78%;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #dropdown-menu {
@@ -463,6 +467,7 @@ p {
   width: 95%;
   margin: 0.5em;
   display: flex;
+  cursor: pointer;
 }
 .card .card-padding {
   padding: 0.5em;
@@ -494,6 +499,10 @@ p {
 
 .free {
   color: #3d9b3d;
+}
+
+input {
+  cursor: pointer;
 }
 
 #search-value {
@@ -627,6 +636,11 @@ header section nav button {
 
 .row {
   display: flex;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
 .margin-left05 {

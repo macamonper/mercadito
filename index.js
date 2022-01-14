@@ -7,11 +7,13 @@ const dropdownSubCatBtn = document.getElementsByClassName("btn-subCategories");
 const dropdownSubCat = document.getElementById("dropdown-subcat"); 
 const slideShow = document.getElementById("slide-show");
 const aside = document.getElementById("aside");
+const main = document.querySelector("main");
 // const slides = document.querySelectorAll('#slides .slide');
 // const next = document.getElementById('next');
 // const prev = document.getElementById('prev');
 const productsView = document.getElementById("products");
 const titleAside = document.getElementById("search-value-title");
+const checkBoxs = document.querySelectorAll('.check');
 const stateSelect = document.getElementById("state-select");
 const checkbxStore = document.getElementById("official-store");
 const checkbxShipping = document.getElementById("shipping");
@@ -102,8 +104,10 @@ const searchByCategories = (category_ID) =>{
     .then (res =>res.json())
     .then(data =>{
 
-        HTMLproducts(data.results)
-        aside.classList.add ("hide")
+        HTMLproducts(data.results);
+        aside.classList.add ("hide");
+        productsView.style.width ="90%";
+        main.classList.add ("center")
 
     })
 }
@@ -120,8 +124,6 @@ fetch(`https://api.mercadolibre.com/categories/${category_ID}`)
 
  })
 }
-
-
 
 const HTMLforSubCategory = (arr) => {
     
@@ -198,61 +200,36 @@ const fetchSelectState = (searchValue) =>{
 }
 const HTMLforStateSelect = (data) =>{
 
- 
+ const selectNone = `<option value="none">Selecciona tu ubicación</option>`;
     const stateOption = data.reduce ((acc,curr) => {
+
+
         return acc + `   
-        <option class="state-name" data-id=${curr.id}>${curr.name}</option>
+        <option class="state-name" value=${curr.id}>${curr.name}</option>
 
         `
     },"");
 
-    stateSelect.innerHTML = stateOption;
-    getIDofState()
+    stateSelect.innerHTML = selectNone + stateOption;
 
 
 }
 
-const getIDofState = () => {
-
-    const states = document.getElementsByClassName("state-name");
+let IDofState = "";
+let stateBoolean = false;
  
-    stateSelect.addEventListener('change',(e) => {
-        for (let state of states){
-            console.log(state.dataset.id)
+stateSelect.addEventListener('change',(e) => {
+
+    IDofState = stateSelect.value;  
+    stateBoolean = true;
     
-            
-        }
-    
-    });
-    
-
-}
-
-const getIDofState2 = () => {
-
-    const states = document.getElementsByClassName("state-name");
- 
-    stateSelect.addEventListener('click',(event) =>{
-        for (let state of states){
-            state.onclick = () => {
-                console.log(state.dataset.id)
-        
-            }
-        }
-    })
-      
-    
-
-}
-
-
- 
-let checkBoxs = document.querySelectorAll('.check');
+});
 
 
 
 
 checkBoxs.forEach((checkbox) => { 
+
     checkbox.addEventListener('change', (event) => {
         applyFiltersInProducts(searchValue.value)
         
@@ -281,12 +258,12 @@ const applyFiltersInProducts = (searchValue) => {
             url = url + "&official_store=all"
 
         }
-        if(stateSelect.click()){
-            url = url + "&state="
+        if(stateBoolean === true){
+            url = url + "&state=" + IDofState
         }
+        
 
-
-    console.log(url)
+        console.log(url)
     fetch(url)
     .then(res => res.json())
     .then(data => {

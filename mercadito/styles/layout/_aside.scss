@@ -2,7 +2,7 @@
     width:20%;
     background-color:$background-products;
     height: 160vh;
-    padding-left: 3em;
+    padding-left: 1em;
 
     
     position: sticky;
@@ -10,11 +10,5 @@
 
     word-wrap: break-word;
 
-
- 
 }
 
-.column{
-    display: flex;
-    flex-direction: column;
-}
