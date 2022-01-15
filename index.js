@@ -20,11 +20,12 @@ const checkbxShipping = document.getElementById("shipping");
 const checkbxPayment = document.getElementById("payment");
 const checkbxNew = document.getElementById("new");
 const checkbxUsed = document.getElementById ("used");
+const singleProductView = document.getElementById("single-product");
 
 
 
 //SEARCH BAR
-const searchProducts = (searchValue) =>{
+const searchProducts = (searchValue) => {
 
     let url = `https://api.mercadolibre.com/sites/MLA/search?q=${searchValue}`;
 
@@ -48,9 +49,11 @@ searchBar.onsubmit = (e) => {
 
 }
 
-//HTML FOR PRODUCTS REQUESTED
-const HTMLproducts= (data) => {
+//PRODUCTS 
 
+const HTMLproducts = (data) => {
+
+    singleProductView.classList.add("hide")
     slideShow.classList.add("hide");
     aside.classList.remove ("hide");
     productsView.classList.remove("hide")
@@ -60,10 +63,10 @@ const HTMLproducts= (data) => {
 
         return acc + `    
         
-        <article class ="card" data-id="${curr.id}">
+        <article class ="card " data-id="${curr.id}">
 
             <div class ="img-container">
-                <img class="thumbnail" src="${(curr.thumbnail)}"></img>
+                <img class="thumbnail" src="${curr.thumbnail}"></img>
             </div>
             <div class="card-padding">
 
@@ -81,9 +84,96 @@ const HTMLproducts= (data) => {
 
     productsView.innerHTML = products;
 
-    
+    getIDofProducts()
+
 
 }
+
+const getIDofProducts = () => {
+    
+    const cards = document.getElementsByClassName("card");
+
+    
+    for (let card of cards){
+
+        card.onclick = () => {
+
+            singleProductView.classList.remove("hide")
+            aside.classList.add("hide");
+            slideShow.classList.add("hide");
+            productsView.classList.add("hide");
+            main.classList.add ("center")
+
+            searchSingleProduct(card.dataset.id)
+
+        } 
+
+    }
+}
+
+const searchSingleProduct = (ID) => {
+
+    fetch (`https://api.mercadolibre.com/items/${ID}`)
+    .then (res => res.json ())
+    .then (data => {
+
+        console.log(data)
+
+        fetch (`https://api.mercadolibre.com/items/${ID}/description`)
+
+        .then (res => res.json ())
+    
+        .then (description => {
+    
+            HTMLforSingleProduct(data,description)
+            
+        })
+    })
+
+
+}
+
+
+const HTMLforSingleProduct = (data,description) => {
+
+
+    singleProductView.innerHTML = `
+
+        <article class="card-single-product">
+
+            <div class=" row">
+
+                <div class ="photo-container">
+
+                    <img class="photo" src="${data.thumbnail}"></img>
+                </div>
+                <div class="single-product-pad">
+
+                    <h2>${data.title}</h2>
+                    <div class = "row">
+                    ${data.shipping.free_shipping === true ? " <p class='free' ><i class='fas fa-shipping-fast'></i> Envio gratis</p>" : "<p>Envio normal</p>" }
+
+                    </div>
+                    <h3>$ ${data.price}</h2>
+                    <button id="btn-buy">Agregar al carrito</button>
+
+                </div>
+            </div>
+
+            <div id="description-box">
+                <h4>Descripción</h4>
+                <h4 id="description">
+                ${description.plain_text}
+                
+
+                </h4>
+            </div>
+    
+            </article>
+
+    `
+} 
+
 
 //CATEGORIES
 
@@ -98,13 +188,14 @@ const getCategories = () => {
     })
 }
 
-const searchByCategories = (category_ID) =>{
+const searchByCategories = (category_ID) => {
 
     fetch(`https://api.mercadolibre.com/sites/MLA/search?category=${category_ID}`)
     .then (res =>res.json())
     .then(data =>{
 
         HTMLproducts(data.results);
+        singleProductView.classList.add("hide")
         aside.classList.add ("hide");
         productsView.style.width ="90%";
         main.classList.add ("center")
@@ -148,7 +239,7 @@ const HTMLdropDownMenu = (data) => {
         return acc + `   
         <div class= "row category" > 
 
-            <p class="cat-name" data-id=${curr.id}>${curr.name}</p>
+            <p class="cat-name" data-id="${curr.id}">${curr.name}</p>
             <button class="btn-subCategories"> <i class="fas fa-chevron-right"></i> </button>
         
         </div>
@@ -161,6 +252,7 @@ const HTMLdropDownMenu = (data) => {
 
 
 }
+
 const getIDofCategory = () => {
 
     const categories = document.getElementsByClassName("cat-name");
@@ -169,7 +261,7 @@ const getIDofCategory = () => {
     for (let category of categories){
 
         category.onclick = () => {
-        console.log(category.dataset.id)
+
         searchByCategories(category.dataset.id)
         //getChildrenCategories(category.dataset.id)
 
@@ -186,26 +278,34 @@ dropdownBtn.onmouseenter = () => {
 
 //FILTERS
 
-const fetchSelectState = (searchValue) =>{
+const fetchSelectState = (searchValue) => {
 
     fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${searchValue}`)
     .then(res =>res.json())
     .then(data =>{
-    HTMLforStateSelect(data.available_filters[2].values)
+
+    HTMLforStateSelect(data.available_filters)
 
 
     })
 
 
 }
-const HTMLforStateSelect = (data) =>{
+
+const HTMLforStateSelect = (data) => {
+
+
+const getStates= data.find ( filter => filter.id === "state")
+
+const states = getStates.values
 
  const selectNone = `<option value="none">Selecciona tu ubicación</option>`;
-    const stateOption = data.reduce ((acc,curr) => {
+
+    const stateOption = states.reduce ((acc,curr) => {
 
 
         return acc + `   
-        <option class="state-name" value=${curr.id}>${curr.name}</option>
+        <option class="state-name" value="${curr.id}">${curr.name}</option>
 
         `
     },"");
@@ -263,7 +363,6 @@ const applyFiltersInProducts = (searchValue) => {
         }
         
 
-        console.log(url)
     fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -274,6 +373,4 @@ const applyFiltersInProducts = (searchValue) => {
 
     })
 }
-
-
 

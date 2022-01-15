@@ -1,19 +1,25 @@
-.card{
+@mixin cards  {
+
     border: 2px solid transparent;
-    height:15em ;
     padding: 0.5em 0.5em;
     border-bottom: 0.5px solid $separation-line;
-    width: 95%;
     margin: 0.5em;
+    
+}
+
+.card{
+
+@include cards;
+
+    height: 15em;
+    width: 95%;
     display: flex;
     cursor: pointer;
+
     .card-padding{
         padding: 0.5em;
     }
-    img{
-        height: 100%;
-        border-radius: 2px;
-    }
+
 
     h2{
         font-size: 1.2rem;
@@ -41,10 +47,16 @@
     align-content: center;
     justify-content: center;
 
+    img{
+        height: 100%;
+        border-radius: 2px;
+    }
 
 
 
 }
+
 .free{
     color:$free_shipping
 }
+
