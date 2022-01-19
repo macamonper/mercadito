@@ -18,25 +18,42 @@ const main = document.querySelector("main");
 // const prev = document.getElementById('prev');
 const productsView = document.getElementById("products-view");
 const productsCards = document.getElementById("products");
-
+const pageProductBtns = document.getElementById("product-page-btns");
+const btnNext = document.getElementById('next');
+const btnPrev = document.getElementById('prev');
+const pageCategoryBtns = document.getElementById("category-page-btns");
+const btnNextCat = document.getElementById("next-cat");
+const btnPrevCat = document.getElementById("prev-cat");
 const titleAsideProducts = document.getElementById("search-value-product-title");
 const titleAsideCategory = document.getElementById("category-title");
-
 const btnAsc = document.getElementById("asc");
 const btnDesc = document.querySelector("desc");
 const checkBoxsProducts = document.querySelectorAll('.check-products');
 const checkBoxsCategories = document.querySelectorAll (".check-categories")
 const stateSelect = document.getElementById("state-select");
+const stateSelectCat = document.getElementById("state-select-cat");
 const checkbxStore = document.getElementById("official-store");
 const checkbxStoreCat = document.getElementById("official-store-cat");
-
 const checkbxShipping = document.getElementById("shipping");
+const checkbxShippingCat = document.getElementById("shipping-cat");
 const checkbxPayment = document.getElementById("payment");
+const checkbxPaymentCat = document.getElementById("payment-cat");
 const checkbxNew = document.getElementById("new");
+const checkbxNewCat = document.getElementById("newCat");
 const checkbxUsed = document.getElementById ("used");
+const checkbxUsedCat = document.getElementById ("usedCat");
+
 const singleProductView = document.getElementById("single-product");
 const cardSingleProduct = document.getElementById("card-single-product");
 
+let offset = 0
+let IDofState = "";
+let stateBoolean = false;
+
+let IDofCategory = "";
+let offsetForCat= 0;
+let IDofStateCat = "";
+let stateCatBoolean = false;
 
 //LOADER
 
@@ -48,68 +65,51 @@ const dataload = () => {
         loader.classList.add ("hidden")
 
         ;
-    }, 300);
+    }, 100);
 }
 
-//PAGING FOR SEARCHED PRODUCTS
-
-
-let offset = 0
-
-
-const btnNext = document.getElementById("next");
-const btnPrev = document.getElementById("prev");
-
-
-btnNext.onclick = (e) => {
-
-    e.preventDefault()
-
-    offset = offset + 8
-
-    applyFiltersInProducts(searchValue.value,offset)
-    
-}    
-
-btnPrev.onclick = (e) =>{
-
-    e.preventDefault()
-
-    if( offset <= 0){
-        btnPrev.setAttribute("disabled");
-    }
-    else{
-        btnPrev.removeAttribute("disabled");
-        offset -= 8
-        
-    }
-    
-    applyFiltersInProducts(searchValue.value,offset)
-
-}
-
-
+//SCROLL TOP
+const scrollTop = () => {
+    window.scrollTo(0, 0);
+};
 
 //SEARCH BAR
 const searchProducts = (searchValue,offset) => {
 
-    let url = `https://api.mercadolibre.com/sites/MLA/search?q=${searchValue}&offset=${offset}&limit=8`;
-
-
     containerLoader.style.display ="flex";
     loader.classList.remove ("hidden")
-    console.log(url)
+
+    let url = `https://api.mercadolibre.com/sites/MLA/search?q=${searchValue}&offset=${offset}&limit=8`;
+
+        if (checkbxShipping.checked) {
+            url = url + "&shipping_cost=free"
+        }
+        if (checkbxPayment.checked) {
+            url = url + "&installments=no_interest"
+        }
+        if (checkbxNew.checked) {
+            url = url + "&ITEM_CONDITION=2230284"
+        }
+        if (checkbxUsed.checked) {
+            url = url + "&ITEM_CONDITION=2230581"
+        }
+        if (checkbxStore.checked){
+            url = url + "&official_store=all"
+
+        }
+        if(stateBoolean === true){
+            url = url + "&state=" + IDofState
+        }
 
     fetch(url)
-    
     .then(res => res.json())
-    
     .then(data => {
 
-        console.log(data)
         dataload()
         HTMLproducts(data.results)
-
+        asideProducts.style.display="block";
+        asideCategories.style.display="none"
+        
     })
 }
 
@@ -119,6 +119,8 @@ searchBar.onsubmit = (e) => {
     searchProducts(searchValue.value,offset)
     titleAsideProducts.innerHTML = searchValue.value
     fetchSelectState(searchValue.value)
+    pageCategoryBtns.classList.add("hidden")
+    pageProductBtns.classList.remove("hidden")
 
 
 }
@@ -130,31 +132,26 @@ const HTMLproducts = (data) => {
     singleProductView.classList.add("hidden")
     slideShow.classList.add("hidden");
     resultsView.classList.remove("hidden");
-    asideCategories.style.display= "none"
-    asideProducts.style.display ="block";
-
-
-
 
     const products = data.reduce ((acc,curr) => {
 
         return acc + `    
         
-        <article class ="card " data-id="${curr.id}">
+            <article class ="card " data-id="${curr.id}">
 
-            <div class ="img-container">
-                <img class="thumbnail" src="${curr.thumbnail}"></img>
-            </div>
-            <div class="card-padding">
-
-                <h2>${curr.title}</h2>
-                <div class = "row">
-                ${curr.shipping.free_shipping === true ? " <p class='free' ><i class='fas fa-shipping-fast'></i> Envio gratis</p>" : "<p>Envio normal</p>" }
+                <div class ="img-container">
+                    <img class="thumbnail" src="${curr.thumbnail}"></img>
                 </div>
-                <h3>$  ${curr.price}</h2>
+                <div class="card-padding">
 
-            </div>
-      </article>
+                    <h2>${curr.title}</h2>
+                    <div class = "row">
+                    ${curr.shipping.free_shipping === true ? " <p class='free' ><i class='fas fa-shipping-fast'></i> Envio gratis</p>" : "<p>Envio normal</p>" }
+                    </div>
+                    <h3>$  ${curr.price}</h2>
+
+                </div>
+            </article>
 
         `
     },"")
@@ -186,8 +183,6 @@ const getIDofProducts = () => {
     }
 }
 
-
-
 const searchSingleProduct = (ID) => {
 
     fetch (`https://api.mercadolibre.com/items/${ID}`)
@@ -195,6 +190,7 @@ const searchSingleProduct = (ID) => {
     .then (data => {
 
         containerLoader.style.display ="flex";
+
         loader.classList.remove ("hidden")
 
         fetch (`https://api.mercadolibre.com/items/${ID}/description`)
@@ -212,7 +208,6 @@ const searchSingleProduct = (ID) => {
 
 
 }
-
 
 const HTMLforSingleProduct = (data,description) => {
 
@@ -254,6 +249,38 @@ const HTMLforSingleProduct = (data,description) => {
     `
 } 
 
+//PAGING FOR SEARCHED PRODUCTS
+
+btnNext.onclick = (e) => {
+
+    e.preventDefault()
+
+    offset = offset + 8
+
+    searchProducts(searchValue.value,offset)
+    scrollTop()
+
+    
+}    
+
+btnPrev.onclick = (e) =>{
+
+    e.preventDefault()
+
+    if( offset <= 0){
+        btnPrev.setAttribute("disabled");
+    }
+    else{
+        btnPrev.removeAttribute("disabled");
+        offset -= 8
+        
+    }
+    
+    searchProducts(searchValue.value,offset)
+    scrollTop()
+
+}
+
 
 //FILTERS FOR PRODUCTS
 
@@ -263,16 +290,12 @@ const fetchSelectState = (searchValue) => {
     .then(res =>res.json())
     .then(data =>{
 
-    HTMLforStateSelect(data.available_filters)
-
+        HTMLforStateSelect(data.available_filters)
 
     })
-
-
 }
 
 const HTMLforStateSelect = (data) => {
-
 
     const getStates= data.find ( filter => filter.id === "state")
 
@@ -289,13 +312,12 @@ const HTMLforStateSelect = (data) => {
         `
     },"");
 
-    stateSelect.innerHTML = selectNone + stateOption;
+    stateSelectCat.innerHTML= selectNone + stateOption;
+    stateSelect.innerHTML= selectNone + stateOption;
 
 
 }
 
-let IDofState = "";
-let stateBoolean = false;
  
 stateSelect.addEventListener('change',(e) => {
 
@@ -309,47 +331,10 @@ checkBoxsProducts.forEach((checkbox) => {
 
     checkbox.addEventListener('change', (event) => {
 
-        applyFiltersInProducts(searchValue.value,offset)
+        searchProducts(searchValue.value,offset)
         
     })
 })
-
-const applyFiltersInProducts = (searchValue,offset) => {
-
-    let url = `https://api.mercadolibre.com/sites/MLA/search?q=${searchValue}&offset=${offset}&limit=8`;
-
-       
-        if (checkbxShipping.checked) {
-            url = url + "&shipping_cost=free"
-        }
-        if (checkbxPayment.checked) {
-            url = url + "&installments=no_interest"
-        }
-        if (checkbxNew.checked) {
-            url = url + "&ITEM_CONDITION=2230284"
-        }
-        if (checkbxUsed.checked) {
-            url = url + "&ITEM_CONDITION=2230581"
-        }
-        if (checkbxStore.checked){
-            url = url + "&official_store=all"
-
-        }
-        console.log (url)
-
-        fetch(url)
-    
-    .then(res => res.json())
-    .then(data => {
-
-        HTMLproducts(data.results)
-        console.log(data)
-
-
-
-
-    })
-}
 
 
 //CATEGORIES
@@ -399,49 +384,38 @@ const getIDofCategory = () => {
 
         category.onclick = () => {
 
-        IDofCategory = category.dataset.id
-        console.log(IDofCategory)
+            IDofCategory = category.dataset.id
 
-        applyFiltersInCategories(IDofCategory,offsetForCat)
-        //getChildrenCategories(category.dataset.id)
+            searchByCategories(IDofCategory,offsetForCat)
+            fetchSelectStateCat(IDofCategory)
 
-
+            //getChildrenCategories(category.dataset.id)
         } 
 
     }
 }
 
 dropdownBtn.onmouseenter = () => {
+
     getCategories()
 }
 
 //PAGING FOR CATEGORY PRODUCTS
 
-let IDofCategory = "";
-
-let offsetForCat= 0;
-
-const btnNextCat = document.getElementById("next-cat");
-const btnPrevCat = document.getElementById("prev-cat");
 
 
 btnNextCat.onclick = (e) => {
-
-    console.log(offsetForCat)
 
     e.preventDefault()
 
     offsetForCat = offsetForCat + 8
 
-console.log(offsetForCat)
+    searchByCategories(IDofCategory,offsetForCat)
+    scrollTop()
 
-searchByCategories(IDofCategory,offsetForCat)
-    
 }    
 
 btnPrevCat.onclick = (e) =>{
-
-    console.log(offsetForCat)
 
     e.preventDefault()
 
@@ -450,16 +424,15 @@ btnPrevCat.onclick = (e) =>{
     }
     else{
         btnPrevCat.removeAttribute("disabled");
+
         offsetForCat -= 8
-
-        console.log(offsetForCat)
-
-        
     }
+
     searchByCategories(IDofCategory,offsetForCat)
+    scrollTop()
+
 
 }
-
 
 const searchByCategories = (IDofCategory,offsetForCat) => {
 
@@ -467,54 +440,83 @@ const searchByCategories = (IDofCategory,offsetForCat) => {
     
     loader.classList.remove ("hidden")
 
-    console.log(offsetForCat)
-
     let url = (`https://api.mercadolibre.com/sites/MLA/search?category=${IDofCategory}&offset=${offsetForCat}&limit=8`)
 
+        if (checkbxShippingCat.checked) {
+            url = url + "&shipping_cost=free"
+        }
+        if (checkbxPaymentCat.checked) {
+            url = url + "&installments=no_interest"
+        }
+        if (checkbxNewCat.checked) {
+            url = url + "&ITEM_CONDITION=2230284"
+        }
+        if (checkbxUsedCat.checked) {
+            url = url + "&ITEM_CONDITION=2230581"
+        }
+        if (checkbxStoreCat.checked){
+            url = url + "&official_store=all"
+        }
+        if(stateCatBoolean === true){
+            url = url + "&state=" + IDofStateCat
+        }
+
     fetch(url)
-    .then (res =>res.json())
+    
+    .then(res => res.json())
     .then(data => {
 
         dataload()
 
+
         HTMLproducts(data.results);
         asideProducts.style.display ="none"
         asideCategories.style.display= "block"
+        titleAsideCategory.innerHTML = `${data.filters[0].values[0].name}`
+        pageCategoryBtns.classList.remove("hidden")
+        pageProductBtns.classList.add("hidden")
+    
+    
+
+
     })
 }
 
 //FILTERS  FOR CATEGORIES
 
+const fetchSelectStateCat = (IDofCategory) => {
+
+    fetch(`https://api.mercadolibre.com/sites/MLA/search?category=${IDofCategory}`)
+
+    .then(res => res.json() )
+    .then(data => {
+
+        HTMLforStateSelect(data.available_filters)
+
+    })
+
+
+}
 
 checkBoxsCategories.forEach((checkboxCat) => { 
 
     checkboxCat.addEventListener('change', (event) => {
 
-        applyFiltersInCategories(IDofCategory,offsetForCat)
-        
+        searchByCategories(IDofCategory,offsetForCat)
+
     })
 })
 
-const applyFiltersInCategories = (IDofCategory,offsetForCat) => {
+
+ 
+stateSelectCat.addEventListener('change',(e) => {
+
+    IDofStateCat = stateSelectCat.value;  
+    stateCatBoolean = true;
     
-    let url = (`https://api.mercadolibre.com/sites/MLA/search?category=${IDofCategory}&offset=${offsetForCat}&limit=8`)
-
-       
-        if (checkbxStoreCat.checked){
-            url = url + "&official_store=all"
-
-        }
-            console.log(url)
-        fetch(url)
-    
-    .then(res => res.json())
-    .then(data => {
-        console.log(IDofCategory)
-        HTMLproducts(data.results)
+});
 
 
-    })
-}
 
 
 /* const getChildrenCategories = (category_ID) =>{

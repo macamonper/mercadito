@@ -96,7 +96,7 @@
                     <div>
                         <label for="state"></label>
 
-                        <select name="states" class="check-products" id="state-select" >
+                        <select name="states" class="check-products " id="state-select" >
                             <option value="none">Selecciona tu ubicación</option>
 
                         </select>
@@ -155,7 +155,7 @@
 
                 <div>
                     <h4>Envio</h4>
-                    <input type="checkbox" id="shipping" name="filters" value="shipping" class="check-categories">
+                    <input type="checkbox" id="shipping-cat" name="filters" value="shipping" class="check-categories">
                     <label for="free-shipping">Envio gratis</label>
                 </div>
 
@@ -165,7 +165,7 @@
                     <div>
                         <label for="state"></label>
 
-                        <select name="states" class="check-categories" id="state-select" >
+                        <select name="states" class="check-categories" id="state-select-cat" >
                             <option value="none">Selecciona tu ubicación</option>
 
                         </select>
@@ -176,7 +176,7 @@
                 <div>
                     <h4>Pago</h4>
 
-                    <input type="checkbox" id="payment" name="filters" value="payment"class="check-categories">
+                    <input type="checkbox" id="payment-cat" name="filters" value="payment"class="check-categories">
                     <label for="no-interest">Sin interés</label>
                 </div>
                 
@@ -186,16 +186,16 @@
                     <div class="column">
                         
                         <div class="row ">
-                            <input type="radio" id="all" name="filters" value="all" class="check-categories" selected>
+                            <input type="radio" id="allCat" name="filters" value="all" class="check-categories" selected>
                             <label for="all">Todas</label>
                         </div>
                         <div class="row">
-                            <input type="radio" id="new" name="filters" value="new" class="check-categories">
+                            <input type="radio" id="newCat" name="filters" value="new" class="check-categories">
                             <label for="new">Nuevo</label>
                         </div>
 
                         <div class="row">
-                            <input type="radio" id="used" name="filters" value="used" class="check-categories">
+                            <input type="radio" id="usedCat" name="filters" value="used" class="check-categories">
                             <label for="used">Usado</label>
                         </div>
                     </div>
@@ -223,7 +223,7 @@
 
 
 
-            <div class="pagination" style="display: none;">
+            <div id="product-page-btns" class="pagination hidden">
 
                 <button id="prev"><i class="far fa-arrow-alt-circle-left"></i></button>
                 <button id="next"><i class="far fa-arrow-alt-circle-right"></i></button>
@@ -231,7 +231,7 @@
 
 
 
-            <div id="category-btns" class="pagination">
+            <div id="category-page-btns" class="pagination">
                 <button id="prev-cat"><i class="far fa-arrow-alt-circle-left"></i></button>
                 <button id="next-cat"><i class="far fa-arrow-alt-circle-right"></i></button>
 
