@@ -24,4 +24,25 @@
   background-color: $background-header;
 
 }
+#sort-btns{
+display: flex;
+justify-content: right;
+}
+
+#asc , #desc{
+padding: 0.3em;
+margin-bottom: 0.5em;
+
+}
+#desc{
+  margin-right: 1em;
+}
+#prev, #next,#prev-cat, #next-cat{
+  @include button;
+  background-color: $background-products;
+  font-size: 2em;
+  
+
+
+}
 

@@ -12,14 +12,12 @@
 @include cards;
 
     height: 15em;
-    width: 95%;
     display: flex;
     cursor: pointer;
 
     .card-padding{
         padding: 0.5em;
     }
-
 
     h2{
         font-size: 1.2rem;

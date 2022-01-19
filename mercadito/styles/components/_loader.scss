@@ -1,0 +1,28 @@
+#pre-loader {
+
+
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    
+    height: 80vh;
+    background-color: rgba(0, 0, 0, 0.37);
+    
+}
+
+#loader {
+    border-top: 6px solid $background-header;
+    border-right: 6px solid $free_shipping;
+    border-bottom: 6px solid $tipography;
+    border-left: 6px solid #ffc0cb;
+
+    border-radius: 50%;
+    width: 2em;
+    height:2em;
+    animation: spin 2s linear infinite;
+}
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

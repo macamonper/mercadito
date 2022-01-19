@@ -1,14 +1,21 @@
-#aside{
+@mixin asides{
+    
     width:20%;
     background-color:$background-products;
-    height: 160vh;
-    padding-left: 1em;
-
-    
+    padding: 0.5em;
     position: sticky;
     top: -20px;
-
     word-wrap: break-word;
 
 }
 
+#aside-products{
+    @include asides;
+    display: none;
+
+}
+
+#aside-categories{
+    @include asides;
+    display: none;
+}

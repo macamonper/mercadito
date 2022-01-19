@@ -1,6 +1,7 @@
 @import "general/normalize";
-@import "general/typography";
 @import "general/colors";
+@import "components/loader";
+@import "general/typography";
 @import"layout/aside";
 @import "layout/main";
 @import "components/buttons";
@@ -12,12 +13,16 @@
 @import "components/inputs";
 @import "layout/header";
 @import "components/slideshow";
+@import "layout/pagination";
+
+
 
 *:focus{
     outline: thin dotted ;
   }
 
   
+
 .row{
   display: flex;
   
@@ -29,9 +34,8 @@
 
 .center{
   display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
 .margin-left05{
@@ -39,6 +43,6 @@
 }
 
 
-.hide{
+.hidden{
   display: none;
 }
