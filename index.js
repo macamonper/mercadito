@@ -403,6 +403,7 @@ const getIDofCategory = () => {
         console.log(IDofCategory)
 
         applyFiltersInCategories(IDofCategory,offsetForCat)
+        //getChildrenCategories(category.dataset.id)
 
 
         } 
@@ -482,7 +483,7 @@ const searchByCategories = (IDofCategory,offsetForCat) => {
     })
 }
 
-//FILTERS FOR CATEGORIES
+//FILTERS  FOR CATEGORIES
 
 
 checkBoxsCategories.forEach((checkboxCat) => { 
