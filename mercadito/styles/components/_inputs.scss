@@ -14,3 +14,17 @@ input{
 .check{
   margin-left: 1em;
 }
+
+#all,#new,#used{
+  margin-bottom: 1.5em;
+}
+
+@media (min-width:320px) and (max-width:460px) {
+  
+  #search-value{
+    flex-grow: 0;
+    height: 0.3em;
+    width: 100%;
+  }
+
+}

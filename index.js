@@ -1,33 +1,37 @@
 const containerLoader = document.getElementById("pre-loader");
 const loader = document.getElementById("loader");
-
 const searchBar = document.getElementById("search-bar");
 const searchValue = document.getElementById("search-value");
 const searchBarBtn = document.getElementById("search-bar-btn");
 const dropDownMenu = document.getElementById("dropdown-cat");
 const dropdownBtn = document.getElementById ("drop-btn");
-const dropdownSubCatBtn = document.getElementsByClassName("btn-subCategories");
-const dropdownSubCat = document.getElementById("dropdown-subcat"); 
-const slideShow = document.getElementById("slide");
+const home = document.getElementById("home");
 const resultsView = document.getElementById ("results")
 const asideProducts = document.getElementById("aside-products");
 const asideCategories = document.getElementById ("aside-categories")
 const main = document.querySelector("main");
-// const slides = document.querySelectorAll('#slides .slide');
-// const next = document.getElementById('next');
-// const prev = document.getElementById('prev');
 const productsView = document.getElementById("products-view");
 const productsCards = document.getElementById("products");
 const pageProductBtns = document.getElementById("product-page-btns");
-const btnNext = document.getElementById('next');
-const btnPrev = document.getElementById('prev');
+const btnNextProduct = document.getElementById('next');
+const btnPrevProduct = document.getElementById('prev');
+const btnsPageSortProducts = document.getElementById("product-sort-page-btns");
+const btnNextSortProducts = document.getElementById ("next-sort");
+const btnPrevSortProducts = document.getElementById ("prev-sort");
 const pageCategoryBtns = document.getElementById("category-page-btns");
 const btnNextCat = document.getElementById("next-cat");
 const btnPrevCat = document.getElementById("prev-cat");
+const btnsPageSortCategories = document.getElementById("category-sort-page-btns");
+const btnNextSortCat = document.getElementById ("next-sort-cat");
+const btnPrevSortCat = document.getElementById ("prev-sort-cat");
 const titleAsideProducts = document.getElementById("search-value-product-title");
 const titleAsideCategory = document.getElementById("category-title");
-const btnAsc = document.getElementById("asc");
-const btnDesc = document.querySelector("desc");
+const sortProductsBtns = document.getElementById("sort-btns-product");
+const btnAscProducts = document.getElementById("asc-product");
+const btnDescProducts = document.getElementById("desc-product");
+const sortCategoryBtns = document.getElementById ("sort-btns-category")
+const btnAscCat = document.getElementById("asc-cat");
+const btnDescCat = document.getElementById("desc-cat");
 const checkBoxsProducts = document.querySelectorAll('.check-products');
 const checkBoxsCategories = document.querySelectorAll (".check-categories")
 const stateSelect = document.getElementById("state-select");
@@ -38,22 +42,41 @@ const checkbxShipping = document.getElementById("shipping");
 const checkbxShippingCat = document.getElementById("shipping-cat");
 const checkbxPayment = document.getElementById("payment");
 const checkbxPaymentCat = document.getElementById("payment-cat");
+const checkbxAll = document.getElementById("all");
+const checkbxAllCat = document.getElementById("all-cat");
 const checkbxNew = document.getElementById("new");
 const checkbxNewCat = document.getElementById("newCat");
 const checkbxUsed = document.getElementById ("used");
 const checkbxUsedCat = document.getElementById ("usedCat");
-
 const singleProductView = document.getElementById("single-product");
 const cardSingleProduct = document.getElementById("card-single-product");
+
+const categoryChildren = document.getElementById("children");
+const categoryCellphone = document.getElementById("cellphone");
+const categoryGrocery = document.getElementById("grocery");
+const autoPartsImg = document.getElementById("autoparts");
+const gardenImg = document.getElementById("garden");
+const airConImg = document.getElementById("air-conditioner");
+
 
 let offset = 0
 let IDofState = "";
 let stateBoolean = false;
 
 let IDofCategory = "";
+let NameOfCategory ="";
 let offsetForCat= 0;
 let IDofStateCat = "";
 let stateCatBoolean = false;
+
+let btnAscProductsBoolean = false;
+let btnDescProductsBoolean = false;
+let btnAscBooleanCat = false;
+let btnDescBooleanCat = false;
+
+let offsetForProductSort = 0;
+let offsetForCatSort = 0;
+
 
 //LOADER
 
@@ -87,6 +110,9 @@ const searchProducts = (searchValue,offset) => {
         if (checkbxPayment.checked) {
             url = url + "&installments=no_interest"
         }
+        if(checkbxAll.checked){
+            url = url
+        }
         if (checkbxNew.checked) {
             url = url + "&ITEM_CONDITION=2230284"
         }
@@ -99,16 +125,21 @@ const searchProducts = (searchValue,offset) => {
         }
         if(stateBoolean === true){
             url = url + "&state=" + IDofState
-        }
-
+        } 
+        
     fetch(url)
     .then(res => res.json())
     .then(data => {
 
+
         dataload()
         HTMLproducts(data.results)
+
         asideProducts.style.display="block";
         asideCategories.style.display="none"
+        sortProductsBtns.style.display = "flex";
+        sortCategoryBtns.style.display = "none";
+    
         
     })
 }
@@ -116,21 +147,25 @@ const searchProducts = (searchValue,offset) => {
 searchBar.onsubmit = (e) => {
 
     e.preventDefault()
-    searchProducts(searchValue.value,offset)
-    titleAsideProducts.innerHTML = searchValue.value
-    fetchSelectState(searchValue.value)
-    pageCategoryBtns.classList.add("hidden")
-    pageProductBtns.classList.remove("hidden")
+
+    searchProducts(searchValue.value,offset);
+
+    titleAsideProducts.innerHTML = searchValue.value;
+
+    fetchSelectState(searchValue.value);
+
+    pageProductBtns.classList.remove("hidden");
+
 
 
 }
 
-//PRODUCTS 
+//PRODUCT SEARCHED RESULTS
 
 const HTMLproducts = (data) => {
 
     singleProductView.classList.add("hidden")
-    slideShow.classList.add("hidden");
+    home.classList.add("hidden");
     resultsView.classList.remove("hidden");
 
     const products = data.reduce ((acc,curr) => {
@@ -173,7 +208,7 @@ const getIDofProducts = () => {
         card.onclick = () => {
 
             singleProductView.classList.remove("hidden")
-            slideShow.classList.add("hidden");
+            home.classList.add("hidden");
             resultsView.classList.add("hidden");
 
             searchSingleProduct(card.dataset.id)
@@ -249,9 +284,9 @@ const HTMLforSingleProduct = (data,description) => {
     `
 } 
 
-//PAGING FOR SEARCHED PRODUCTS
+//PAGING FOR SEARCHED PRODUCT
 
-btnNext.onclick = (e) => {
+btnNextProduct.onclick = (e) => {
 
     e.preventDefault()
 
@@ -263,7 +298,7 @@ btnNext.onclick = (e) => {
     
 }    
 
-btnPrev.onclick = (e) =>{
+btnPrevProduct.onclick = (e) =>{
 
     e.preventDefault()
 
@@ -281,8 +316,7 @@ btnPrev.onclick = (e) =>{
 
 }
 
-
-//FILTERS FOR PRODUCTS
+//FILTERS FOR SEARCHED PRODUCT
 
 const fetchSelectState = (searchValue) => {
 
@@ -317,7 +351,6 @@ const HTMLforStateSelect = (data) => {
 
 
 }
-
  
 stateSelect.addEventListener('change',(e) => {
 
@@ -325,7 +358,6 @@ stateSelect.addEventListener('change',(e) => {
     stateBoolean = true;
     
 });
-
 
 checkBoxsProducts.forEach((checkbox) => { 
 
@@ -336,8 +368,188 @@ checkBoxsProducts.forEach((checkbox) => {
     })
 })
 
+//SORT FOR PRODUCTS SEARCHED
+
+
+const searchByProductSortAsc = (searchValue,offsetForProductSort) => {
+
+    containerLoader.style.display ="flex";
+    
+    loader.classList.remove ("hidden")
+
+    let urlSort = (`https://api.mercadolibre.com/sites/MLA/search?q=${searchValue}&sort=price_asc&offset=${offsetForProductSort}&limit=8`);
+
+    if (checkbxShipping.checked) {
+        urlSort = urlSort + "&shipping_cost=free"
+    }
+    if (checkbxPayment.checked) {
+        urlSort= urlSort + "&installments=no_interest"
+    }
+    if(checkbxAll.checked){
+        urlSort = urlSort
+    }
+    if (checkbxNew.checked) {
+        urlSort = urlSort + "&ITEM_CONDITION=2230284"
+    }
+    if (checkbxUsed.checked) {
+        urlSort = urlSort + "&ITEM_CONDITION=2230581"
+    }
+    if (checkbxStore.checked){
+        urlSort = urlSort + "&official_store=all"
+
+    }
+    if(stateBoolean === true){
+        urlSort = urlSort + "&state=" + IDofState
+    } 
+
+    fetch(urlSort)
+    .then(res => res.json())
+    .then(data => {
+
+        dataload()
+
+        HTMLproducts(data.results);
+
+        asideProducts.style.display="block";
+        asideCategories.style.display="none";
+
+        pageCategoryBtns.classList.add("hidden");
+        btnsPageSortCategories.classList.add("hidden");
+        sortCategoryBtns.classList.add("hidden");
+        pageProductBtns.classList.add("hidden");
+        btnsPageSortProducts.classList.remove("hidden");
+
+    })
+}
+
+btnAscProducts.onclick = (e) => {
+
+    btnDescProductsBoolean = false;
+    btnAscProductsBoolean = true;
+
+
+  searchByProductSortAsc(searchValue.value,offsetForProductSort)
+}
+
+
+const searchByProductSortDesc = (searchValue,offsetForProductSort) => {
+
+    containerLoader.style.display ="flex";
+    
+    loader.classList.remove ("hidden")
+
+
+    let urlSort = (`https://api.mercadolibre.com/sites/MLA/search?q=${searchValue}&sort=price_desc&offset=${offsetForProductSort}&limit=8`);
+    
+    if (checkbxShipping.checked) {
+        urlSort = urlSort + "&shipping_cost=free"
+    }
+    if (checkbxPayment.checked) {
+        urlSort= urlSort + "&installments=no_interest"
+    }
+    if(checkbxAll.checked){
+        urlSort = urlSort
+    }
+    if (checkbxNew.checked) {
+        urlSort = urlSort + "&ITEM_CONDITION=2230284"
+    }
+    if (checkbxUsed.checked) {
+        urlSort = urlSort + "&ITEM_CONDITION=2230581"
+    }
+    if (checkbxStore.checked){
+        urlSort = urlSort + "&official_store=all"
+
+    }
+    if(stateBoolean === true){
+        urlSort = urlSort + "&state=" + IDofState
+    } 
+    fetch(urlSort)
+
+    .then(res => res.json())
+    .then(data => {
+
+   
+        dataload()
+
+        HTMLproducts(data.results);
+
+        asideProducts.style.display="block";
+        asideCategories.style.display="none";
+
+        pageCategoryBtns.classList.add("hidden");
+        btnsPageSortCategories.classList.add("hidden");
+        sortCategoryBtns.classList.add("hidden");
+        pageProductBtns.classList.add("hidden");
+        btnsPageSortProducts.classList.remove("hidden");
+        
+    })
+}
+
+btnDescProducts.onclick = (e) => {
+
+    btnAscProductsBoolean = false;
+
+    btnDescProductsBoolean = true;
+
+    searchByProductSortDesc(searchValue.value,offsetForProductSort)
+
+} 
+
+//PAGING FOR SORT PRODUCTS
+
+btnNextSortProducts.onclick = (e) => {
+
+    e.preventDefault()
+
+    offsetForProductSort = offsetForProductSort + 8
+
+    if (btnAscProductsBoolean === true){
+
+        searchByProductSortAsc(searchValue.value,offsetForProductSort)
+        scrollTop()
+    }
+    if(btnDescProductsBoolean === true){
+        searchByProductSortDesc(searchValue.value,offsetForProductSort)
+        scrollTop()
+
+    }
+}    
+
+btnPrevSortProducts.onclick = (e) =>{
+
+    e.preventDefault()
+
+    if( offsetForProductSort <= 0){ 
+
+        btnPrevSortProducts.setAttribute("disabled", "");
+    }
+    if(offsetForProductSort> 1 ){
+
+        btnPrevSortProducts.removeAttribute("disabled","");
+
+
+        offsetForProductSort -= 8
+    }
+    if (btnAscProductsBoolean === true){
+
+        searchByProductSortAsc(searchValue.value,offsetForProductSort)
+        scrollTop()
+    }
+    if(btnDescProductsBoolean === true){
+
+        searchByProductSortDesc(searchValue.value,offsetForProductSort)
+        scrollTop()
+
+
+    }
+
+
+}
+
+
 
 //CATEGORIES
+
 
 const getCategories = () => {
 
@@ -351,7 +563,7 @@ const getCategories = () => {
     })
 }
 
-//DROP DOWN MENU
+//DROP DOWN MENU FOR CATEGORIES
 
 const HTMLdropDownMenu = (data) => {
     
@@ -360,17 +572,17 @@ const HTMLdropDownMenu = (data) => {
         return acc + `   
         <div class= "row category" > 
 
-            <p class="cat-name" data-id="${curr.id}">${curr.name}</p>
-            <button class="btn-subCategories"> <i class="fas fa-chevron-right"></i> </button>
+            <p class="cat-name" data-id="${curr.id}" data-name ="${curr.name}">${curr.name}</p>
         
         </div>
         `
     },"")
     
     dropDownMenu.innerHTML = catNames
-    
-    getIDofCategory()
+    sortProductsBtns.style.display = "none";
+    sortCategoryBtns.style.display = "flex";
 
+    getIDofCategory()
 
 
 }
@@ -385,11 +597,12 @@ const getIDofCategory = () => {
         category.onclick = () => {
 
             IDofCategory = category.dataset.id
+            NameOfCategory = category.dataset.name
 
             searchByCategories(IDofCategory,offsetForCat)
             fetchSelectStateCat(IDofCategory)
 
-            //getChildrenCategories(category.dataset.id)
+
         } 
 
     }
@@ -400,8 +613,7 @@ dropdownBtn.onmouseenter = () => {
     getCategories()
 }
 
-//PAGING FOR CATEGORY PRODUCTS
-
+//PAGING FOR CATEGORY RESULTS
 
 
 btnNextCat.onclick = (e) => {
@@ -420,10 +632,10 @@ btnPrevCat.onclick = (e) =>{
     e.preventDefault()
 
     if( offsetForCat <= 0){
-        btnPrevCat.setAttribute("disabled");
+        btnPrevCat.setAttribute("disabled","");
     }
     else{
-        btnPrevCat.removeAttribute("disabled");
+        btnPrevCat.removeAttribute("disabled","");
 
         offsetForCat -= 8
     }
@@ -448,6 +660,9 @@ const searchByCategories = (IDofCategory,offsetForCat) => {
         if (checkbxPaymentCat.checked) {
             url = url + "&installments=no_interest"
         }
+        if(checkbxAllCat.checked){
+            url=url
+        }
         if (checkbxNewCat.checked) {
             url = url + "&ITEM_CONDITION=2230284"
         }
@@ -461,6 +676,7 @@ const searchByCategories = (IDofCategory,offsetForCat) => {
             url = url + "&state=" + IDofStateCat
         }
 
+
     fetch(url)
     
     .then(res => res.json())
@@ -468,21 +684,20 @@ const searchByCategories = (IDofCategory,offsetForCat) => {
 
         dataload()
 
-
         HTMLproducts(data.results);
-        asideProducts.style.display ="none"
-        asideCategories.style.display= "block"
-        titleAsideCategory.innerHTML = `${data.filters[0].values[0].name}`
+
+        asideProducts.style.display ="none";
+        asideCategories.style.display= "block";
+        titleAsideCategory.innerHTML = NameOfCategory
         pageCategoryBtns.classList.remove("hidden")
         pageProductBtns.classList.add("hidden")
     
-    
-
 
     })
 }
 
-//FILTERS  FOR CATEGORIES
+
+//FILTERS  FOR CATEGORIES RESULTS
 
 const fetchSelectStateCat = (IDofCategory) => {
 
@@ -507,7 +722,6 @@ checkBoxsCategories.forEach((checkboxCat) => {
     })
 })
 
-
  
 stateSelectCat.addEventListener('change',(e) => {
 
@@ -516,47 +730,180 @@ stateSelectCat.addEventListener('change',(e) => {
     
 });
 
+//SORT OF CATEGORIES RESULTS
+
+
+const searchByCatSortAsc = (IDofCategory,offsetForCatSort) => {
+
+    containerLoader.style.display ="flex";
+    
+    loader.classList.remove ("hidden")
+
+
+    let urlSort = (`https://api.mercadolibre.com/sites/MLA/search?category=${IDofCategory}&sort=price_asc&offset=${offsetForCatSort}&limit=8`)
+
+    fetch(urlSort)
+
+        if (checkbxShippingCat.checked) {
+            urlSort = urlSort + "&shipping_cost=free"
+        }
+        if (checkbxPaymentCat.checked) {
+            urlSort = urlSort + "&installments=no_interest"
+        }
+        if(checkbxAllCat.checked){
+            urlSort = urlSort
+        }
+        if (checkbxNewCat.checked) {
+            urlSort = urlSort + "&ITEM_CONDITION=2230284"
+        }
+        if (checkbxUsedCat.checked) {
+            urlSort = urlSort + "&ITEM_CONDITION=2230581"
+        }
+        if (checkbxStoreCat.checked){
+            urlSort= urlSort + "&official_store=all"
+        }
+        if(stateCatBoolean === true){
+            urlSort = urlSort + "&state=" + IDofStateCat
+        }
 
 
 
-/* const getChildrenCategories = (category_ID) =>{
+    fetch(urlSort)
+    .then(res => res.json())
+    .then(data => {
 
-fetch(`https://api.mercadolibre.com/categories/${category_ID}`)
+        dataload()
 
-.then (res => res.json())
-.then(data => {
-    console.log(data.children_categories)
+        HTMLproducts(data.results);
 
+        asideProducts.style.display ="none";
+        asideCategories.style.display= "block";
+        titleAsideCategory.innerHTML = NameOfCategory
+        pageCategoryBtns.classList.remove("hidden")
+        pageProductBtns.classList.add("hidden")
+      
+
+    })
+}
+
+btnAscCat.onclick = (e) => {
+
+    btnDescBooleanCat = false;
+    btnAscBooleanCat = true;
+
+
+  searchByCatSortAsc(IDofCategory,offsetForCatSort)
+}
+
+
+const searchByCatSortDesc = (IDofCategory,offsetForCatSort) => {
+
+    containerLoader.style.display ="flex";
+    
+    loader.classList.remove ("hidden")
+
+
+    let urlSort = (`https://api.mercadolibre.com/sites/MLA/search?category=${IDofCategory}&sort=price_desc&offset=${offsetForCatSort}&limit=8`)
+
+    fetch(urlSort)
+
+        if (checkbxShippingCat.checked) {
+            urlSort = urlSort + "&shipping_cost=free"
+        }
+        if (checkbxPaymentCat.checked) {
+            urlSort = urlSort + "&installments=no_interest"
+        }
+        if(checkbxAllCat.checked){
+            urlSort = urlSort
+        }
+        if (checkbxNewCat.checked) {
+            urlSort = urlSort + "&ITEM_CONDITION=2230284"
+        }
+        if (checkbxUsedCat.checked) {
+            urlSort = urlSort + "&ITEM_CONDITION=2230581"
+        }
+        if (checkbxStoreCat.checked){
+            urlSort = urlSort + "&official_store=all"
+        }
+        if(stateCatBoolean === true){
+            urlSort = urlSort + "&state=" + IDofStateCat
+        }
+
+
+    fetch(urlSort)
+    .then(res => res.json())
+    .then(data => {
+
+        dataload()
+
+        HTMLproducts(data.results);
+
+        asideProducts.style.display ="none";
+        asideCategories.style.display= "block";
+        titleAsideCategory.innerHTML = NameOfCategory
+        pageCategoryBtns.classList.remove("hidden")
+        pageProductBtns.classList.add("hidden")
     
 
- })
+    })
 }
 
-const HTMLforSubCategory = (arr) => {
-    
+btnDescCat.onclick = (e) => {
 
-    const subCatNames = getSubCategory.reduce ((acc,curr) => {
-        return acc +
-        `
-                <p data-id=${curr.id}>${curr.name}</p>
-            `
-    },"")
+    btnAscBooleanCat = false;
 
-    dropdownSubCat.innerHTML = subCatNames;
-    
-}
-*/
+    btnDescBooleanCat = true;
 
-
-
-
-//SORT
-
-const sortDesc = (data) =>{
-    data.sort((a,b)=>b.price-a.price)
-
+    searchByCatSortDesc(IDofCategory,offsetForCatSort)
 
 }
-const sortAsc = (data) =>{
-    data.sort((a,b)=>a.price-b.price)
+
+//PAGING FOR SORT CATEGORY RESULTS
+
+btnNextSortCat.onclick = (e) => {
+
+    e.preventDefault()
+
+    offsetForCatSort = offsetForCatSort + 8
+
+    if (btnAscBooleanCat === true){
+
+        searchByCatSortAsc(IDofCategory,offsetForCatSort)
+        scrollTop()
+    }
+    if(btnDescBooleanCat === true){
+        searchByCatSortDesc(IDofCategory,offsetForCatSort)
+        scrollTop()
+
+    }
+}    
+
+btnPrevSortCat.onclick = (e) =>{
+
+    e.preventDefault()
+
+    if( offsetForCatSort <= 0){ 
+        btnPrevSortCat.setAttribute("disabled", "");
+        btnPrevSortCat.style.color = "grey"
+    }
+    if(offsetForCatSort > 1 ){
+        btnPrevSortCat.removeAttribute("disabled","");
+        btnPrevSortCat.style.color = "$typography"
+
+
+        offsetForCatSort -= 8
+    }
+    if (btnAscBooleanCat === true){
+        searchByCatSortAsc(IDofCategory,offsetForCatSort)
+        scrollTop()
+    }
+    if(btnDescBooleanCat === true){
+        searchByCatSortDesc(IDofCategory,offsetForCatSort)
+        scrollTop()
+
+
+    }
+
+
 }
+

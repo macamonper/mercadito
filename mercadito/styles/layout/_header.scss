@@ -1,4 +1,5 @@
 header{
+
     height: 20vh;
     background-color: $background-header;
     display: flex;
@@ -15,14 +16,14 @@ header{
         flex-direction: column;
 
             
-        form {
+        #search-bar {
             display:flex;
             flex-direction:row;
             border:2px solid $tipography;
             border-radius: 2px;
             width: 40em;
-            height: 3em;
-            margin:2em 0 0 1em;
+            height: 2em;
+            margin:2em 1em 0em ;
         
             input{
                 padding: 0.7em;
@@ -41,16 +42,39 @@ header{
     }
 
 }
-@media (max-width: 455px) {
 
-    img{
-        display: none;
+@media (min-width:320px) and (max-width:460px) {
+
+    header{
+        height: 10vh;
+
     }
-    form{
-        width: 20em;
-        margin: 2em;
+    #logo{
+      width:4em;
+      
     }
+    #search-bar{
+        width: 100%;
+        margin:0em 0em 0em ;
+
+    }
+
     ::placeholder{
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
+
+}
+
+@media (min-width:769px) and (max-width:1024px) {
+
+    #search-bar{
+
+        width: 100%;
+        margin:0;
+    }
+    #logo{
+        width:10em;
+        
+    }
+
 }

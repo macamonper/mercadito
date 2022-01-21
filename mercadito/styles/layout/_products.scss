@@ -13,4 +13,16 @@
 
 }
 
+@media (min-width:320px) and (max-width:460px) {
+    
+  #products{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      width: 100%;
+      background-color: $background-products;
+    }
+      
+  
 
+}

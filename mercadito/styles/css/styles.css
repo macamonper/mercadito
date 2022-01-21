@@ -363,25 +363,52 @@ template {
 }
 
 #aside-products {
-  width: 20%;
   background-color: #f6f2f7;
   padding: 0.5em;
   position: sticky;
   top: -20px;
   word-wrap: break-word;
   display: none;
+  width: 20%;
 }
 
 #aside-categories {
-  width: 20%;
   background-color: #f6f2f7;
   padding: 0.5em;
   position: sticky;
   top: -20px;
   word-wrap: break-word;
   display: none;
+  width: 20%;
 }
 
+@media (min-width: 320px) and (max-width: 460px) {
+  #aside-products, #aside-categories {
+    width: 20%;
+    padding-left: 0.3em;
+    padding-right: 0em;
+  }
+  #aside-products h2, #aside-categories h2 {
+    font-size: 1rem;
+  }
+  #aside-products h3, #aside-categories h3 {
+    font-size: 0.8rem;
+  }
+  #aside-products h4, #aside-categories h4 {
+    font-size: 0.5rem;
+  }
+  #aside-products label, #aside-categories label {
+    font-size: 0.4rem;
+  }
+  #aside-products input, #aside-categories input {
+    height: 0.5em;
+    margin: 0;
+  }
+  #aside-products select, #aside-categories select {
+    width: 100%;
+    font-size: 0.7rem;
+  }
+}
 main {
   background-color: #f6f2f7;
 }
@@ -406,28 +433,12 @@ main {
   background-color: #2E294E;
 }
 
-.btn-subCategories {
-  border: 1px solid transparent;
-  color: #E76F51;
-  cursor: pointer;
-  background-color: #2E294E;
-}
-
-#sort-btns {
+#sort-btns-product, #sort-btns-category {
   display: flex;
   justify-content: right;
 }
 
-#asc, #desc {
-  padding: 0.3em;
-  margin-bottom: 0.5em;
-}
-
-#desc {
-  margin-right: 1em;
-}
-
-#prev, #next, #prev-cat, #next-cat {
+#prev, #next, #prev-cat, #next-cat, #prev-sort-cat, #next-sort-cat, #prev-sort, #next-sort {
   border: 1px solid transparent;
   color: #E76F51;
   cursor: pointer;
@@ -435,6 +446,15 @@ main {
   font-size: 2em;
 }
 
+@media (min-width: 320px) and (max-width: 460px) {
+  #drop-btn {
+    font-size: 0.7rem;
+  }
+
+  #asc-product, #desc-product {
+    font-size: 0.7rem;
+  }
+}
 #aside h2 {
   font-size: 2rem;
   width: 100%;
@@ -463,6 +483,15 @@ main {
   border-radius: 10px;
 }
 
+@media (min-width: 320px) and (max-width: 460px) {
+  #products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    background-color: #f6f2f7;
+  }
+}
 #dropdown-menu {
   display: inline-block;
   position: relative;
@@ -506,15 +535,6 @@ p {
   margin: 0;
 }
 
-#dropdown-subcat {
-  width: 100%;
-  height: 100px;
-  overflow: auto;
-  border-radius: 3px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  background-color: #2E294E;
-}
-
 .card {
   border: 2px solid transparent;
   padding: 0.5em 0.5em;
@@ -556,6 +576,38 @@ p {
   color: #3d9b3d;
 }
 
+@media (min-width: 320px) and (max-width: 460px) {
+  .card {
+    height: 15vh;
+    width: 40%;
+    padding-right: 0;
+    padding-bottom: 1em;
+    margin-right: 0em;
+    margin-bottom: 0em;
+    background-color: #ffffff;
+    border-radius: 3px;
+  }
+  .card .card-padding {
+    padding: 0.5em;
+  }
+  .card h2 {
+    font-size: 0.58rem;
+  }
+  .card p {
+    font-size: 0.4rem;
+  }
+  .card h3 {
+    font-size: 0.5rem;
+    margin: 0.5em;
+  }
+  .card .img-container {
+    width: 100%;
+  }
+  .card .img-container img {
+    object-fit: cover;
+    border-radius: 2px;
+  }
+}
 #single-product {
   display: flex;
   align-items: flex-start;
@@ -642,6 +694,17 @@ input {
   margin-left: 1em;
 }
 
+#all, #new, #used {
+  margin-bottom: 1.5em;
+}
+
+@media (min-width: 320px) and (max-width: 460px) {
+  #search-value {
+    flex-grow: 0;
+    height: 0.3em;
+    width: 100%;
+  }
+}
 header {
   height: 20vh;
   background-color: #2E294E;
@@ -657,16 +720,16 @@ header section {
   display: flex;
   flex-direction: column;
 }
-header section form {
+header section #search-bar {
   display: flex;
   flex-direction: row;
   border: 2px solid #E76F51;
   border-radius: 2px;
   width: 40em;
-  height: 3em;
-  margin: 2em 0 0 1em;
+  height: 2em;
+  margin: 2em 1em 0em;
 }
-header section form input {
+header section #search-bar input {
   padding: 0.7em;
 }
 header section nav {
@@ -676,28 +739,101 @@ header section nav button {
   font-weight: bold;
 }
 
-@media (max-width: 455px) {
-  img {
-    display: none;
+@media (min-width: 320px) and (max-width: 460px) {
+  header {
+    height: 10vh;
   }
 
-  form {
-    width: 20em;
-    margin: 2em;
+  #logo {
+    width: 4em;
+  }
+
+  #search-bar {
+    width: 100%;
+    margin: 0em 0em 0em;
   }
 
   ::placeholder {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 }
-#slide {
-  height: 45vh;
+@media (min-width: 769px) and (max-width: 1024px) {
+  #search-bar {
+    width: 100%;
+    margin: 0;
+  }
+
+  #logo {
+    width: 10em;
+  }
 }
-#slide img {
+.slide {
+  height: 50vh;
+  cursor: pointer;
+}
+.slide img {
   height: 100%;
   width: 100%;
 }
 
+.category-circle {
+  height: 30vh;
+}
+.category-circle h3 {
+  margin: 1em;
+}
+.category-circle button {
+  border: 1px solid transparent;
+  color: #E76F51;
+  cursor: pointer;
+  margin: 1em;
+  height: 5em;
+  width: 5em;
+  border-radius: 50%;
+  background-color: #d4d3d68f;
+}
+.category-circle span {
+  margin: 1em;
+  height: 5em;
+  width: 5em;
+  border-radius: 50%;
+  background-color: #d4d3d68f;
+  border: 1px solid transparent;
+  color: #E76F51;
+}
+.category-circle span i {
+  margin: 1.9em;
+  height: 5em;
+  width: 5em;
+}
+
+@media (min-width: 320px) and (max-width: 460px) {
+  .slide {
+    height: 25vh;
+    width: 100%;
+  }
+
+  .category-circle {
+    height: 15vh;
+  }
+  .category-circle h3 {
+    font-size: 0.9rem;
+    margin: 0.5em;
+  }
+  .category-circle button {
+    height: 3em;
+    width: 3em;
+  }
+  .category-circle span {
+    height: 3em;
+    width: 3em;
+  }
+  .category-circle span i {
+    margin: 1em;
+    height: 3em;
+    width: 3em;
+  }
+}
 .pagination {
   display: flex;
   justify-content: space-evenly;
