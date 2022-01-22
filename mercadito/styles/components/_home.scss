@@ -1,0 +1,87 @@
+
+.slide{
+    
+    height: 50vh;
+    cursor: pointer;
+
+    img{
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.category-circle{
+
+    height: 30vh;
+    margin: 1em;
+
+    h3{
+        margin: 1em;
+    }
+    button{
+
+        @include button;
+        margin: 1em;
+        height: 5em;
+        width: 5em;
+        border-radius: 50%;
+        background-color: $separation-line;
+
+    }
+    span{
+        margin: 1em;
+        height: 5em;
+        width: 5em;
+        border-radius: 50%;
+        background-color: $separation-line;
+        border:1px solid transparent;
+        color:$tipography;
+
+        i{
+            margin: 1.9em;
+            height: 5em;
+            width: 5em;
+        }
+    }
+
+}
+
+@media (min-width:320px) and (max-width:460px) {
+    
+    .slide{
+        height: 20vh;
+        width: 100%;
+    }
+    
+    .category-circle{
+
+        height: 10vh;
+
+        h3{
+            font-size: 0.6rem;
+            
+        }
+
+        button{
+        
+            height: 1.5em;
+            width: 1.5em;
+            margin: 0em;
+            i{
+                font-size: 0.7rem;
+            }
+        }
+        span{
+            height: 1.5em;
+            width: 1.5em;
+            margin: 0;
+            i{
+                margin: 0.54em;
+                font-size: 0.7rem;
+                height: 1.5em;
+                width: 1.5em;
+            }
+        }
+        
+    }
+}

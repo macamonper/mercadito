@@ -1,7 +1,47 @@
 @import "general/normalize";
 @import "general/colors";
+@import "components/loader";
+@import "general/typography";
+@import"layout/aside";
+@import "layout/main";
 @import "components/buttons";
+@import"components/filters";
+@import "layout/products";
 @import "components/dropdown-menu";
-@import "components/card";
+@import "components/cards";
+@import "components/card_single_product";
 @import "components/inputs";
 @import "layout/header";
+@import "components/home";
+@import "layout/pagination";
+
+
+
+*:focus{
+    outline: thin dotted ;
+  }
+
+  
+
+.row{
+  display: flex;
+  
+}
+.column{
+  display: flex;
+  flex-direction: column;
+}
+
+.center{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.margin-left05{
+  margin-left: 0.5em;
+}
+
+.hidden{
+  display: none;
+}

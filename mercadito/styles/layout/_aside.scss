@@ -1,0 +1,62 @@
+@mixin asides{
+    
+    background-color:$background-products;
+    padding: 0.5em;
+    position: sticky;
+    top: -20px;
+    word-wrap: break-word;
+
+}
+
+#aside-products{
+    @include asides;
+    display: none;
+    width:20%;
+
+    
+}
+
+#aside-categories{
+    @include asides;
+    display: none;
+    width:20%;
+
+}
+
+@media (min-width:320px) and (max-width:460px) {
+
+    #aside-products, #aside-categories{
+        
+        width: 20%;
+        padding-left: 0em;
+        padding-right: 0em;
+
+        #search-value-product-title{
+            font-size: 0.7rem;
+        }
+        #category-title{
+            font-size: 0.5rem;
+        }
+        h3{
+            font-size: 0.6rem;
+        }
+        h4{
+            font-size: 0.5rem;
+        }
+        label{
+            font-size: 0.5rem;
+        }
+        input{
+            height: 0.5em;
+            margin: 0;
+        }
+        select{
+            width: 100%;
+            font-size: 0.7rem;
+
+          
+        }
+    }
+
+
+}
