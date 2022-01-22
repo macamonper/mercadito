@@ -10,7 +10,6 @@
 
 #aside-products{
     @include asides;
-    display: none;
     width:20%;
 
     
@@ -18,36 +17,50 @@
 
 #aside-categories{
     @include asides;
-    display: none;
     width:20%;
 
 }
 
+.cross-contain{
+    display: none;
+}
+
 @media (min-width:320px) and (max-width:460px) {
 
-    #aside-products, #aside-categories{
-        
-        width: 20%;
-        padding-left: 0em;
-        padding-right: 0em;
 
-        #search-value-product-title{
+    #aside-products, #aside-categories{
+    display: none;
+    position: fixed; 
+    z-index: 1; 
+    right: 0;
+    top: 15%;
+    width: 50%; 
+    height: 100%; 
+    overflow: auto; 
+    box-shadow: 1px 1px 4px $shadow;
+    border-radius: 3px;
+    padding-left: 1em;
+    width:55%;
+    height: 100%;  
+
+    #search-value-product-title{
+            font-size: 1rem;
+            margin-top: 1em;
+    }
+    #category-title{
+            font-size: 0.8rem;
+    }
+        h3{
             font-size: 0.7rem;
         }
-        #category-title{
-            font-size: 0.5rem;
-        }
-        h3{
+        h4{
             font-size: 0.6rem;
         }
-        h4{
-            font-size: 0.5rem;
-        }
         label{
-            font-size: 0.5rem;
+            font-size: 0.6rem;
         }
         input{
-            height: 0.5em;
+            height: 0.6em;
             margin: 0;
         }
         select{
@@ -57,6 +70,45 @@
           
         }
     }
+    .cross-contain{
+    display: flex;
+    justify-content:flex-end;
+    }
+
+    #btn-show-aside-product, #btn-show-aside-categories{
+        color: $tipography;
+        background-color: $background-products;
+        font-weight: bold;
+        transition: 0.3s;
+        border: 1px solid transparent;
+        padding: 1.5em 1.5em  0 ;
 
 
+    }
+    #close-aside-products, #close-aside-categories{
+  
+        @include button;
+        background-color: $shadow;
+        font-weight: bold;
+        transition: 0.3s;
+        border-radius: 50%;
+
+    }
+
+    #aside-products, #aside-categories{
+        -webkit-animation-name: zoom;
+        -webkit-animation-duration: 0.7s;
+        animation-name: zoom;
+        animation-duration: 0.7s;
+        }
+  
+    @-webkit-keyframes zoom {
+        from {-webkit-transform:scale(0)} 
+        to {-webkit-transform:scale(1)}
+    }
+    
+    @keyframes zoom {
+        from {transform:scale(0)} 
+        to {transform:scale(1)}
+    }
 }

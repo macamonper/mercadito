@@ -6,7 +6,7 @@ const searchBarBtn = document.getElementById("search-bar-btn");
 const dropDownMenu = document.getElementById("dropdown-cat");
 const dropdownBtn = document.getElementById ("drop-btn");
 const home = document.getElementById("home");
-const resultsView = document.getElementById ("results")
+const resultsView = document.getElementById ("results");
 const asideProducts = document.getElementById("aside-products");
 const asideCategories = document.getElementById ("aside-categories")
 const main = document.querySelector("main");
@@ -51,12 +51,10 @@ const checkbxUsedCat = document.getElementById ("usedCat");
 const singleProductView = document.getElementById("modal");
 const cardSingleProduct = document.getElementById("single-product-container");
 const closeCard = document.getElementById("close-product");
-const categoryChildren = document.getElementById("children");
-const categoryCellphone = document.getElementById("cellphone");
-const categoryGrocery = document.getElementById("grocery");
-const autoPartsImg = document.getElementById("autoparts");
-const gardenImg = document.getElementById("garden");
-const airConImg = document.getElementById("air-conditioner");
+const btnCloseAsideProducts = document.getElementById("close-aside-products");
+const btnCloseAsideCategories = document.getElementById("close-aside-categories");
+const btnAsideProduct = document.getElementById("btn-show-aside-product");
+const btnAsideCategories = document.getElementById("btn-show-aside-categories");
 
 
 let offset = 0
@@ -135,11 +133,13 @@ const searchProducts = (searchValue,offset) => {
         dataload()
         HTMLproducts(data.results)
 
-        asideProducts.style.display="block";
-        asideCategories.style.display="none"
+        resultsView.classList.remove("hidden");
+        asideProducts.classList.remove("hidden");
+        asideCategories.classList.add("hidden");
         sortProductsBtns.style.display = "flex";
         sortCategoryBtns.style.display = "none";
-    
+        btnAsideProduct.classList.remove("hidden")
+        btnAsideCategories.classList.add("hidden")
         
     })
 }
@@ -166,7 +166,6 @@ const HTMLproducts = (data) => {
 
     singleProductView.classList.add("hidden");
     home.classList.add("hidden");
-    resultsView.classList.remove("hidden");
 
     const products = data.reduce ((acc,curr) => {
 
@@ -421,14 +420,16 @@ const searchByProductSortAsc = (searchValue,offsetForProductSort) => {
 
         HTMLproducts(data.results);
 
-        asideProducts.style.display="block";
-        asideCategories.style.display="none";
-
+        resultsView.classList.remove("hidden");
+        asideProducts.classList.remove("hidden");
+        asideCategories.classList.add("hidden");
         pageCategoryBtns.classList.add("hidden");
         btnsPageSortCategories.classList.add("hidden");
         sortCategoryBtns.classList.add("hidden");
         pageProductBtns.classList.add("hidden");
         btnsPageSortProducts.classList.remove("hidden");
+     
+        
 
     })
 }
@@ -484,14 +485,15 @@ const searchByProductSortDesc = (searchValue,offsetForProductSort) => {
 
         HTMLproducts(data.results);
 
-        asideProducts.style.display="block";
-        asideCategories.style.display="none";
-
+      
         pageCategoryBtns.classList.add("hidden");
         btnsPageSortCategories.classList.add("hidden");
         sortCategoryBtns.classList.add("hidden");
         pageProductBtns.classList.add("hidden");
         btnsPageSortProducts.classList.remove("hidden");
+        resultsView.classList.remove("hidden");
+        asideProducts.classList.remove("hidden");
+        asideCategories.classList.add("hidden");
         
     })
 }
@@ -613,7 +615,6 @@ const getIDofCategory = () => {
             searchByCategories(IDofCategory,offsetForCat)
             fetchSelectStateCat(IDofCategory)
             dropDownMenu.classList.add("hidden")
-            console.log(category.dataset.id)
 
 
         } 
@@ -669,12 +670,17 @@ const searchByCategories = (IDofCategory,offsetForCat) => {
 
         HTMLproducts(data.results);
 
-        asideProducts.style.display ="none";
-        asideCategories.style.display= "block";
+ 
+        resultsView.classList.remove("hidden");
+        asideCategories.classList.remove("hidden");
+        asideProducts.classList.add("hidden");
+        btnAsideProduct.classList.add("hidden")
+        btnAsideCategories.classList.remove("hidden")
         titleAsideCategory.innerHTML = NameOfCategory
         pageCategoryBtns.classList.remove("hidden")
         pageProductBtns.classList.add("hidden")
     
+
 
     })
 }
@@ -792,11 +798,14 @@ const searchByCatSortAsc = (IDofCategory,offsetForCatSort) => {
 
         HTMLproducts(data.results);
 
-        asideProducts.style.display ="none";
-        asideCategories.style.display= "block";
+        resultsView.classList.remove("hidden");
+        asideCategories.classList.remove("hidden");
+        asideProducts.classList.add("hidden");
         titleAsideCategory.innerHTML = NameOfCategory
         pageCategoryBtns.classList.remove("hidden")
         pageProductBtns.classList.add("hidden")
+        btnAsideProduct.classList.add("hidden")
+        btnAsideCategories.classList.remove("hidden")
       
 
     })
@@ -808,7 +817,7 @@ btnAscCat.onclick = (e) => {
     btnAscBooleanCat = true;
 
 
-  searchByCatSortAsc(IDofCategory,offsetForCatSort)
+    searchByCatSortAsc(IDofCategory,offsetForCatSort)
 }
 
 
@@ -854,11 +863,14 @@ const searchByCatSortDesc = (IDofCategory,offsetForCatSort) => {
 
         HTMLproducts(data.results);
 
-        asideProducts.style.display ="none";
-        asideCategories.style.display= "block";
+        resultsView.classList.remove("hidden");
+        asideCategories.classList.remove("hidden");
+        asideProducts.classList.add("hidden");
         titleAsideCategory.innerHTML = NameOfCategory
         pageCategoryBtns.classList.remove("hidden")
         pageProductBtns.classList.add("hidden")
+        btnAsideProduct.classList.add("hidden")
+        btnAsideCategories.classList.remove("hidden")
     
 
     })
@@ -923,3 +935,25 @@ btnPrevSortCat.onclick = (e) =>{
 
 }
 
+//SHOW MODAL OF FILTERS IN MEDIA QUERY
+btnAsideProduct.onclick = (e) =>{
+    asideProducts.style.display = "block";
+ 
+}
+
+btnCloseAsideProducts.onclick = (e) =>{
+    asideProducts.style.display="none";
+
+
+}
+
+btnAsideCategories.onclick = (e) =>{
+    asideCategories.style.display = "block";
+ 
+}
+
+
+btnCloseAsideCategories.onclick = (e) =>{
+    asideCategories.style.display="none";
+
+}
