@@ -13,6 +13,7 @@
 .category-circle{
 
     height: 30vh;
+    margin: 1em;
 
     h3{
         margin: 1em;
@@ -48,30 +49,37 @@
 @media (min-width:320px) and (max-width:460px) {
     
     .slide{
-        height: 25vh;
+        height: 20vh;
         width: 100%;
     }
     
     .category-circle{
 
-        height: 15vh;
+        height: 10vh;
 
         h3{
-            font-size: 0.9rem;
-            margin: 0.5em;
+            font-size: 0.6rem;
+            
         }
 
         button{
-            height: 3em;
-            width: 3em;
+        
+            height: 1.5em;
+            width: 1.5em;
+            margin: 0em;
+            i{
+                font-size: 0.7rem;
+            }
         }
         span{
-            height: 3em;
-            width: 3em;
+            height: 1.5em;
+            width: 1.5em;
+            margin: 0;
             i{
-                margin: 1em;
-                height: 3em;
-                width: 3em;
+                margin: 0.54em;
+                font-size: 0.7rem;
+                height: 1.5em;
+                width: 1.5em;
             }
         }
         

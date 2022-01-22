@@ -4,7 +4,7 @@ header{
     background-color: $background-header;
     display: flex;
     border: 1px solid transparent;
-    box-shadow: 1px 1px 10px ;
+    box-shadow: 1px 1px 10px $separation-line;
 
     img{
         padding-left: 1em;
@@ -15,48 +15,54 @@ header{
         display: flex;
         flex-direction: column;
 
-            
-        #search-bar {
-            display:flex;
-            flex-direction:row;
-            border:2px solid $tipography;
-            border-radius: 2px;
-            width: 40em;
-            height: 2em;
-            margin:2em 1em 0em ;
-        
-            input{
-                padding: 0.7em;
-
-            }
-        }
-
-        nav{
-            margin: 0.5em;
-
-            
-            button{
-                font-weight: bold;
-            }
-        }
     }
 
+    nav{
+        margin: 0.5em;
+
+        
+        button{
+            font-weight: bold;
+        }
+    }
+}
+
+
+#search-bar {
+    display:flex;
+    flex-direction:row;
+    border:2px solid $tipography;
+    border-radius: 2px;
+    width: 40em;
+    height: 2em;
+    margin:2em 1em 0em ;
+
+    input{
+        padding: 0.7em;
+
+    }
 }
 
 @media (min-width:320px) and (max-width:460px) {
 
     header{
-        height: 10vh;
+        height: 13vh;
 
     }
     #logo{
       width:4em;
+      padding: 0;
       
     }
     #search-bar{
-        width: 100%;
-        margin:0em 0em 0em ;
 
+        width:15em;
+        margin:0.5em 0em 0em;
+        
+        input{
+            padding: 0em;
+            width: 100%;
+        }
     }
 
     ::placeholder{
@@ -67,11 +73,6 @@ header{
 
 @media (min-width:769px) and (max-width:1024px) {
 
-    #search-bar{
-
-        width: 100%;
-        margin:0;
-    }
     #logo{
         width:10em;
         

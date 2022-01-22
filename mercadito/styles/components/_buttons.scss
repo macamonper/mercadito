@@ -42,12 +42,22 @@ justify-content: right;
 @media (min-width:320px) and (max-width:460px) {
 
   #drop-btn{
-  font-size: 0.7rem;
+    
+   font-size: 0.7rem;
+   padding: 0em;
   
+  }
+  #asc-product , #desc-product{
+    font-size: 0.7rem;
+  }
 
+  #prev, #next,#prev-cat, #next-cat, #prev-sort-cat, #next-sort-cat, #prev-sort, #next-sort{
+  font-size: 1rem;
+  margin: 1em;
+  }
 
-}
-#asc-product , #desc-product{
-font-size: 0.7rem;
-}
+  #sort-btns-product , #sort-btns-category{
+    margin-bottom: 0em;
+
+  }
 }

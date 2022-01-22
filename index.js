@@ -48,9 +48,9 @@ const checkbxNew = document.getElementById("new");
 const checkbxNewCat = document.getElementById("newCat");
 const checkbxUsed = document.getElementById ("used");
 const checkbxUsedCat = document.getElementById ("usedCat");
-const singleProductView = document.getElementById("single-product");
-const cardSingleProduct = document.getElementById("card-single-product");
-
+const singleProductView = document.getElementById("modal");
+const cardSingleProduct = document.getElementById("single-product-container");
+const closeCard = document.getElementById("close-product");
 const categoryChildren = document.getElementById("children");
 const categoryCellphone = document.getElementById("cellphone");
 const categoryGrocery = document.getElementById("grocery");
@@ -164,7 +164,7 @@ searchBar.onsubmit = (e) => {
 
 const HTMLproducts = (data) => {
 
-    singleProductView.classList.add("hidden")
+    singleProductView.classList.add("hidden");
     home.classList.add("hidden");
     resultsView.classList.remove("hidden");
 
@@ -207,11 +207,10 @@ const getIDofProducts = () => {
 
         card.onclick = () => {
 
-            singleProductView.classList.remove("hidden")
+            searchSingleProduct(card.dataset.id);
+            singleProductView.classList.remove("hidden");
             home.classList.add("hidden");
-            resultsView.classList.add("hidden");
 
-            searchSingleProduct(card.dataset.id)
 
         } 
 
@@ -244,12 +243,23 @@ const searchSingleProduct = (ID) => {
 
 }
 
+
+closeCard.onclick = (e) => {
+
+  singleProductView.classList.add("hidden");
+  resultsView.classList.remove("hidden");
+
+
+
+
+}
+
 const HTMLforSingleProduct = (data,description) => {
 
 
-    singleProductView.innerHTML = `
+    cardSingleProduct.innerHTML = `
 
-        <article id="card-single-product">
+        <div id="card-single-product">
 
             <div class=" row">
 
@@ -257,29 +267,30 @@ const HTMLforSingleProduct = (data,description) => {
 
                     <img class="photo" src="${data.thumbnail}"></img>
                 </div>
-                <div class="single-product-pad">
+                <div id="info-product-container" class ="column">
+                    <div class="single-product-pad">
 
-                    <h2>${data.title}</h2>
-                    <div class = "row">
-                    ${data.shipping.free_shipping === true ? " <p class='free' ><i class='fas fa-shipping-fast'></i> Envio gratis</p>" : "<p>Envio normal</p>" }
+                        <h2>${data.title}</h2>
+                        <div class = "row">
+                        ${data.shipping.free_shipping === true ? " <p class='free' ><i class='fas fa-shipping-fast'></i> Envio gratis</p>" : "<p>Envio normal</p>" }
+
+                        </div>
+                        <h3>$ ${data.price}</h2>
+                        <button id="btn-buy" data-id="${data.permalink}" >Agregar al carrito</button>
 
                     </div>
-                    <h3>$ ${data.price}</h2>
-                    <button id="btn-buy">Agregar al carrito</button>
 
+                    <div id="description-box">
+                        <h4>Descripción</h4>
+                        <h4 id="description">
+                        ${description.plain_text}
+                        </h4>
+                    </div>
                 </div>
             </div>
 
-            <div id="description-box">
-                <h4>Descripción</h4>
-                <h4 id="description">
-                ${description.plain_text}
-                
-
-                </h4>
-            </div>
     
-            </article>
+        </div>
 
     `
 } 
@@ -303,10 +314,10 @@ btnPrevProduct.onclick = (e) =>{
     e.preventDefault()
 
     if( offset <= 0){
-        btnPrev.setAttribute("disabled");
+        btnPrevProduct.setAttribute("disabled","");
     }
     else{
-        btnPrev.removeAttribute("disabled");
+        btnPrevProduct.removeAttribute("disabled","");
         offset -= 8
         
     }
@@ -601,6 +612,8 @@ const getIDofCategory = () => {
 
             searchByCategories(IDofCategory,offsetForCat)
             fetchSelectStateCat(IDofCategory)
+            dropDownMenu.classList.add("hidden")
+            console.log(category.dataset.id)
 
 
         } 
@@ -608,41 +621,11 @@ const getIDofCategory = () => {
     }
 }
 
-dropdownBtn.onmouseenter = () => {
 
+dropdownBtn.onclick = () => {
+
+    dropDownMenu.classList.toggle("hidden")
     getCategories()
-}
-
-//PAGING FOR CATEGORY RESULTS
-
-
-btnNextCat.onclick = (e) => {
-
-    e.preventDefault()
-
-    offsetForCat = offsetForCat + 8
-
-    searchByCategories(IDofCategory,offsetForCat)
-    scrollTop()
-
-}    
-
-btnPrevCat.onclick = (e) =>{
-
-    e.preventDefault()
-
-    if( offsetForCat <= 0){
-        btnPrevCat.setAttribute("disabled","");
-    }
-    else{
-        btnPrevCat.removeAttribute("disabled","");
-
-        offsetForCat -= 8
-    }
-
-    searchByCategories(IDofCategory,offsetForCat)
-    scrollTop()
-
 
 }
 
@@ -694,6 +677,39 @@ const searchByCategories = (IDofCategory,offsetForCat) => {
     
 
     })
+}
+
+//PAGING FOR CATEGORY RESULTS
+
+
+btnNextCat.onclick = (e) => {
+
+    e.preventDefault()
+
+    offsetForCat = offsetForCat + 8
+
+    searchByCategories(IDofCategory,offsetForCat)
+    scrollTop()
+
+}    
+
+btnPrevCat.onclick = (e) =>{
+
+    e.preventDefault()
+
+    if( offsetForCat <= 0){
+        btnPrevCat.setAttribute("disabled","");
+    }
+    else{
+        btnPrevCat.removeAttribute("disabled","");
+
+        offsetForCat -= 8
+    }
+
+    searchByCategories(IDofCategory,offsetForCat)
+    scrollTop()
+
+
 }
 
 

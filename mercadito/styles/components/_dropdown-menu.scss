@@ -1,14 +1,13 @@
 
 #dropdown-menu{
-    display: inline-block;
     position: relative;
-    z-index: 3;
+    z-index: 3;  
+    width: fit-content;  
 }
 
 #dropdown-cat {
   
-    display: none;
-    position: absolute;
+    
     width: 100%;
     overflow: auto;
     border-radius: 3px;
@@ -16,10 +15,6 @@
     background-color:$background-header ;
 }
 
-#dropdown-menu:hover #dropdown-cat {
-    display: block;
-    
-}
 
 .category{
     padding:0.3em;
@@ -29,6 +24,7 @@
 
 .cat-name:hover{
     color: $tipography;
+    background-color: $background-hover;
 }
 .cat-name {
     display: block;
