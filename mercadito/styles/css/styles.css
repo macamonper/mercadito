@@ -902,7 +902,7 @@ header nav button {
 
 @media (min-width: 320px) and (max-width: 460px) {
   header {
-    height: 20%;
+    height: 6em;
   }
 
   #logo {
@@ -917,6 +917,10 @@ header nav button {
   #search-bar input {
     padding: 0em;
     width: 100%;
+  }
+
+  nav {
+    margin: 0;
   }
 
   ::placeholder {

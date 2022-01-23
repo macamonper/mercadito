@@ -46,7 +46,7 @@ header{
 @media (min-width:320px) and (max-width:460px) {
 
     header{
-        height: 20%;
+        height: 6em;
 
 
     }
@@ -66,6 +66,9 @@ header{
         }
     }
 
+    nav{
+        margin: 0;
+    }
 
     ::placeholder{
         font-size: 0.7rem;
