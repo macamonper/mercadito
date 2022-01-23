@@ -31,13 +31,12 @@
     #aside-products, #aside-categories{
     display: none;
     position: fixed; 
-    z-index: 1; 
+    z-index: 5; 
     right: 0;
-    top: 15%;
-    width: 50%; 
+    top: 20%;
     height: 100%; 
     overflow: auto; 
-    box-shadow: 1px 1px 4px $shadow;
+    box-shadow: 2px 2px 10px $shadow;
     border-radius: 3px;
     padding-left: 1em;
     width:55%;

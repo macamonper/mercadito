@@ -1,4 +1,6 @@
-
+#logo{
+    cursor: pointer;
+}
 .slide{
     
     height: 50vh;
@@ -38,9 +40,11 @@
         color:$tipography;
 
         i{
-            margin: 1.9em;
-            height: 5em;
-            width: 5em;
+            margin-top:auto;
+
+            font-size: 2em;
+            padding-left: 0.6em;
+            padding-top: 0.6em;
         }
     }
 
@@ -62,24 +66,19 @@
             
         }
 
-        button{
-        
-            height: 1.5em;
-            width: 1.5em;
-            margin: 0em;
-            i{
-                font-size: 0.7rem;
-            }
-        }
         span{
+            
             height: 1.5em;
             width: 1.5em;
-            margin: 0;
+            display: flex; 
+        
             i{
-                margin: 0.54em;
-                font-size: 0.7rem;
-                height: 1.5em;
-                width: 1.5em;
+
+
+                font-size: 0.6rem;
+                margin-bottom: auto;
+                padding-bottom: 0.4em;
+              
             }
         }
         
