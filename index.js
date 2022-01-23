@@ -51,6 +51,7 @@ const checkbxUsedCat = document.getElementById ("usedCat");
 const singleProductView = document.getElementById("modal");
 const cardSingleProduct = document.getElementById("single-product-container");
 const closeCard = document.getElementById("close-product");
+const showAsideProducts = document.getElementById("show-aside-products");
 const btnCloseAsideProducts = document.getElementById("close-aside-products");
 const btnCloseAsideCategories = document.getElementById("close-aside-categories");
 const btnAsideProduct = document.getElementById("btn-show-aside-product");
@@ -140,6 +141,8 @@ const searchProducts = (searchValue,offset) => {
         sortCategoryBtns.style.display = "none";
         btnAsideProduct.classList.remove("hidden")
         btnAsideCategories.classList.add("hidden")
+        pageCategoryBtns.classList.add("hidden")
+        pageProductBtns.classList.remove("hidden")
         
     })
 }

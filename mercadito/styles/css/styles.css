@@ -850,7 +850,7 @@ input {
 
 #search-value {
   flex-grow: 2;
-  border: 1px solid #ffffff;
+  border: 5px solid #ffffff;
 }
 
 *:focus {
@@ -912,7 +912,7 @@ header nav button {
 
   #search-bar {
     width: 15em;
-    margin: 0.5em 0em 0em;
+    margin: 1em 0em 0em;
   }
   #search-bar input {
     padding: 0em;

@@ -48,6 +48,7 @@ header{
     header{
         height: 15vh;
 
+
     }
     #logo{
       width:4em;
@@ -57,7 +58,7 @@ header{
     #search-bar{
 
         width:15em;
-        margin:0.5em 0em 0em;
+        margin:1em 0em 0em;
         
         input{
             padding: 0em;
@@ -68,6 +69,8 @@ header{
     ::placeholder{
         font-size: 0.7rem;
     }
+
+    
 
 }
 
