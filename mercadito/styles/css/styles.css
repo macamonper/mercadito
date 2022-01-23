@@ -902,7 +902,7 @@ header nav button {
 
 @media (min-width: 320px) and (max-width: 460px) {
   header {
-    height: 18vh;
+    height: 20%;
   }
 
   #logo {
@@ -912,7 +912,7 @@ header nav button {
 
   #search-bar {
     width: 15em;
-    margin: 1em 0em 0em;
+    margin: 2em 0em 0em;
   }
   #search-bar input {
     padding: 0em;
