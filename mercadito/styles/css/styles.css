@@ -902,7 +902,7 @@ header nav button {
 
 @media (min-width: 320px) and (max-width: 460px) {
   header {
-    height: 15vh;
+    height: 18vh;
   }
 
   #logo {
