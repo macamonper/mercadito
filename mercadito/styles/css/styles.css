@@ -362,60 +362,6 @@ template {
   font-family: "Be Vietnam Pro", sans-serif;
 }
 
-#aside-products {
-  background-color: #f6f2f7;
-  padding: 0.5em;
-  position: sticky;
-  top: -20px;
-  word-wrap: break-word;
-  display: none;
-  width: 20%;
-}
-
-#aside-categories {
-  background-color: #f6f2f7;
-  padding: 0.5em;
-  position: sticky;
-  top: -20px;
-  word-wrap: break-word;
-  display: none;
-  width: 20%;
-}
-
-@media (min-width: 320px) and (max-width: 460px) {
-  #aside-products, #aside-categories {
-    width: 20%;
-    padding-left: 0em;
-    padding-right: 0em;
-  }
-  #aside-products #search-value-product-title, #aside-categories #search-value-product-title {
-    font-size: 0.7rem;
-  }
-  #aside-products #category-title, #aside-categories #category-title {
-    font-size: 0.5rem;
-  }
-  #aside-products h3, #aside-categories h3 {
-    font-size: 0.6rem;
-  }
-  #aside-products h4, #aside-categories h4 {
-    font-size: 0.5rem;
-  }
-  #aside-products label, #aside-categories label {
-    font-size: 0.5rem;
-  }
-  #aside-products input, #aside-categories input {
-    height: 0.5em;
-    margin: 0;
-  }
-  #aside-products select, #aside-categories select {
-    width: 100%;
-    font-size: 0.7rem;
-  }
-}
-main {
-  background-color: #f6f2f7;
-}
-
 #search-bar-btn {
   border: 1px solid transparent;
   color: #E76F51;
@@ -465,9 +411,125 @@ main {
   }
 
   #sort-btns-product, #sort-btns-category {
+    width: 100%;
     margin-bottom: 0em;
   }
 }
+#aside-products {
+  background-color: #f6f2f7;
+  padding: 0.5em;
+  position: sticky;
+  top: -20px;
+  word-wrap: break-word;
+  width: 20%;
+}
+
+#aside-categories {
+  background-color: #f6f2f7;
+  padding: 0.5em;
+  position: sticky;
+  top: -20px;
+  word-wrap: break-word;
+  width: 20%;
+}
+
+.cross-contain {
+  display: none;
+}
+
+@media (min-width: 320px) and (max-width: 460px) {
+  #aside-products, #aside-categories {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    top: 15%;
+    width: 50%;
+    height: 100%;
+    overflow: auto;
+    box-shadow: 1px 1px 4px #4140428f;
+    border-radius: 3px;
+    padding-left: 1em;
+    width: 55%;
+    height: 100%;
+  }
+  #aside-products #search-value-product-title, #aside-categories #search-value-product-title {
+    font-size: 1rem;
+    margin-top: 1em;
+  }
+  #aside-products #category-title, #aside-categories #category-title {
+    font-size: 0.8rem;
+  }
+  #aside-products h3, #aside-categories h3 {
+    font-size: 0.7rem;
+  }
+  #aside-products h4, #aside-categories h4 {
+    font-size: 0.6rem;
+  }
+  #aside-products label, #aside-categories label {
+    font-size: 0.6rem;
+  }
+  #aside-products input, #aside-categories input {
+    height: 0.6em;
+    margin: 0;
+  }
+  #aside-products select, #aside-categories select {
+    width: 100%;
+    font-size: 0.7rem;
+  }
+
+  .cross-contain {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #btn-show-aside-product, #btn-show-aside-categories {
+    color: #E76F51;
+    background-color: #f6f2f7;
+    font-weight: bold;
+    transition: 0.3s;
+    border: 1px solid transparent;
+    padding: 1.5em 1.5em 0;
+  }
+
+  #close-aside-products, #close-aside-categories {
+    border: 1px solid transparent;
+    color: #E76F51;
+    cursor: pointer;
+    background-color: #4140428f;
+    font-weight: bold;
+    transition: 0.3s;
+    border-radius: 50%;
+  }
+
+  #aside-products, #aside-categories {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.7s;
+    animation-name: zoom;
+    animation-duration: 0.7s;
+  }
+
+  @-webkit-keyframes zoom {
+    from {
+      -webkit-transform: scale(0);
+    }
+    to {
+      -webkit-transform: scale(1);
+    }
+  }
+  @keyframes zoom {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+}
+main {
+  background-color: #f6f2f7;
+}
+
 #aside h2 {
   font-size: 2rem;
   width: 100%;
@@ -499,8 +561,9 @@ main {
 @media (min-width: 320px) and (max-width: 460px) {
   #products {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 2em;
     width: 100%;
     background-color: #f6f2f7;
   }
@@ -588,14 +651,12 @@ p {
 @media (min-width: 320px) and (max-width: 460px) {
   .card {
     height: auto;
-    width: 40%;
+    width: 100%;
     padding-right: 0;
     padding-bottom: 1em;
-    margin-right: 0em;
-    margin-bottom: 0em;
     background-color: #ffffff;
     border-radius: 3px;
-    box-shadow: 1px 1px 4px #4140428f;
+    box-shadow: 3px 3px 5px #4140428f;
   }
   .card .card-padding {
     padding: 0em 0.5em 0em 0em;
@@ -639,7 +700,7 @@ p {
 
 #modal {
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   left: 0;
   top: 0;
   width: 100%;
@@ -837,11 +898,12 @@ header nav button {
 }
 #search-bar input {
   padding: 0.7em;
+  border-radius: 0;
 }
 
 @media (min-width: 320px) and (max-width: 460px) {
   header {
-    height: 13vh;
+    height: 6em;
   }
 
   #logo {
@@ -851,11 +913,15 @@ header nav button {
 
   #search-bar {
     width: 15em;
-    margin: 0.5em 0em 0em;
+    margin: 2em 0em 0em;
   }
   #search-bar input {
     padding: 0em;
     width: 100%;
+  }
+
+  nav {
+    margin: 0;
   }
 
   ::placeholder {
@@ -942,7 +1008,8 @@ header nav button {
 }
 .pagination {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  padding-left: 5em;
 }
 
 *:focus {
