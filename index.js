@@ -1,3 +1,4 @@
+const logo = document.getElementById("logo");
 const containerLoader = document.getElementById("pre-loader");
 const loader = document.getElementById("loader");
 const searchBar = document.getElementById("search-bar");
@@ -76,7 +77,12 @@ let btnDescBooleanCat = false;
 let offsetForProductSort = 0;
 let offsetForCatSort = 0;
 
+//GO TO HOME
 
+logo.onclick = (e)=>{
+    home.classList.remove("hidden");
+    resultsView.classList.add("hidden");
+}
 //LOADER
 
 const dataload = () => {
@@ -263,13 +269,15 @@ const HTMLforSingleProduct = (data,description) => {
 
         <div id="card-single-product">
 
-            <div class=" row">
+            <div class=" column">
 
-                <div class ="photo-container">
+                <div id="info-product-container" class ="row">
 
-                    <img class="photo" src="${data.thumbnail}"></img>
-                </div>
-                <div id="info-product-container" class ="column">
+                    <div class ="photo-container">
+
+                        <img class="photo" src="${data.thumbnail}"></img>
+                    </div>
+
                     <div class="single-product-pad">
 
                         <h2>${data.title}</h2>
@@ -282,13 +290,14 @@ const HTMLforSingleProduct = (data,description) => {
 
                     </div>
 
-                    <div id="description-box">
-                        <h4>Descripción</h4>
-                        <h4 id="description">
-                        ${description.plain_text}
-                        </h4>
-                    </div>
                 </div>
+                
+                <div id="description-box">
+                <h4>Descripción</h4>
+                <h4 id="description">
+                ${description.plain_text}
+                </h4>
+            </div>
             </div>
 
     

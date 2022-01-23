@@ -441,13 +441,12 @@ template {
   #aside-products, #aside-categories {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 5;
     right: 0;
-    top: 15%;
-    width: 50%;
+    top: 20%;
     height: 100%;
     overflow: auto;
-    box-shadow: 1px 1px 4px #4140428f;
+    box-shadow: 2px 2px 10px #4140428f;
     border-radius: 3px;
     padding-left: 1em;
     width: 55%;
@@ -673,11 +672,10 @@ p {
     margin: 0.5em;
   }
   .card .img-container {
-    width: 100%;
-    height: 20vh;
+    height: 5em;
   }
   .card .img-container img {
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 2px;
   }
 }
@@ -734,30 +732,30 @@ p {
   }
 }
 #single-product-container {
+  width: 30%;
   box-shadow: 1px 1px 4px #4140428f;
   border: 1px solid transparent;
   border-radius: 10px;
   background-color: #FFFFFF;
-  width: 40em;
   padding: 0.5em;
   margin: 10% auto;
 }
 
 .photo-container {
-  width: 20em;
-  height: 60vh;
+  padding: 1em;
 }
 .photo-container .photo {
-  width: 100%;
-  height: 100%;
+  object-fit: fill;
 }
 
 #info-product-container {
   padding-left: 0.3em;
-  width: 20em;
   padding: 0.5em;
 }
 
+.single-product-pad {
+  margin-left: 5em;
+}
 .single-product-pad h2 {
   font-size: 1.5rem;
   margin-top: 0em;
@@ -779,12 +777,15 @@ p {
   color: #E76F51;
   cursor: pointer;
   padding: 0.5em;
-  width: 90%;
+  width: 10em;
   font-weight: bolder;
   background-color: #2E294E;
   border-radius: 3px;
 }
 
+#description-box {
+  border-top: 1px solid #d4d3d68f;
+}
 #description-box h4 {
   color: #2E294E;
   font-size: 0.8rem;
@@ -805,7 +806,11 @@ p {
     margin: 40% auto;
   }
 
+  .single-product-pad {
+    margin-left: 0em;
+  }
   .single-product-pad h2 {
+    width: 50%;
     font-size: 0.8rem;
     margin-top: 0em;
     margin-bottom: 1em;
@@ -827,11 +832,14 @@ p {
     color: #E76F51;
     cursor: pointer;
     padding: 0.3em;
-    width: 90%;
     font-weight: bolder;
     background-color: #2E294E;
     border-radius: 3px;
     font-size: 0.6rem;
+  }
+
+  .photo-container {
+    height: 5em;
   }
 
   #description-box h4 {
@@ -933,6 +941,10 @@ header nav button {
     width: 10em;
   }
 }
+#logo {
+  cursor: pointer;
+}
+
 .slide {
   height: 50vh;
   cursor: pointer;
@@ -969,9 +981,10 @@ header nav button {
   color: #E76F51;
 }
 .category-circle span i {
-  margin: 1.9em;
-  height: 5em;
-  width: 5em;
+  margin-top: auto;
+  font-size: 2em;
+  padding-left: 0.6em;
+  padding-top: 0.6em;
 }
 
 @media (min-width: 320px) and (max-width: 460px) {
@@ -986,24 +999,15 @@ header nav button {
   .category-circle h3 {
     font-size: 0.6rem;
   }
-  .category-circle button {
-    height: 1.5em;
-    width: 1.5em;
-    margin: 0em;
-  }
-  .category-circle button i {
-    font-size: 0.7rem;
-  }
   .category-circle span {
     height: 1.5em;
     width: 1.5em;
-    margin: 0;
+    display: flex;
   }
   .category-circle span i {
-    margin: 0.54em;
-    font-size: 0.7rem;
-    height: 1.5em;
-    width: 1.5em;
+    font-size: 0.6rem;
+    margin-bottom: auto;
+    padding-bottom: 0.4em;
   }
 }
 .pagination {
