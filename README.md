@@ -15,7 +15,7 @@
     <a href="https://github.com/macamonper/mercadito"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/macamonper/mercadito">View Demo</a>
+    <a href="https://macamonper.github.io/mercadito/">View Demo</a>
     ·
     <a href="https://github.com/macamonper/mercadito/issues">Report Bug</a>
     ·
