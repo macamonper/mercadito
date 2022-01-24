@@ -29,7 +29,7 @@
 
 [![Mercadito Libre Screen Shot][product-screenshot]](https://macamonper.github.io/mercadito/)
 
-This repository is a project made for ADA. I used as an example to practice my recent knlowledge of APIS and SASS.
+This repository is a project made for ADA. I used Mercado Libre website as an example to practice my recent knlowledge of APIS and SASS.
 In this website you can search a product and also apply various filters and sorts. It´s also possible to search products by the categories that Mercado Libre´s API has set.
 You can see the information of the products and a detailed version of the selected product when clicked.
 
@@ -70,7 +70,7 @@ Don't forget to give the project a star! Thanks again!
 
 Macarena Perez- - macamonper@gmail.com
 
-Project Link: [https://github.com/macamonper/mercadito(https://github.com/macamonper/mercadito)
+Project Link: https://github.com/macamonper/mercadito
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
