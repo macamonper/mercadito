@@ -673,6 +673,7 @@ p {
   }
   .card .img-container {
     height: 5em;
+    margin-right: 1em;
   }
   .card .img-container img {
     object-fit: contain;
@@ -732,7 +733,7 @@ p {
   }
 }
 #single-product-container {
-  width: 30%;
+  width: 40%;
   box-shadow: 1px 1px 4px #4140428f;
   border: 1px solid transparent;
   border-radius: 10px;
@@ -742,7 +743,8 @@ p {
 }
 
 .photo-container {
-  padding: 1em;
+  width: 40%;
+  padding: 1em 4em 0 0;
 }
 .photo-container .photo {
   object-fit: fill;
@@ -753,9 +755,6 @@ p {
   padding: 0.5em;
 }
 
-.single-product-pad {
-  margin-left: 5em;
-}
 .single-product-pad h2 {
   font-size: 1.5rem;
   margin-top: 0em;
@@ -810,8 +809,7 @@ p {
     margin-left: 0em;
   }
   .single-product-pad h2 {
-    width: 50%;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     margin-top: 0em;
     margin-bottom: 1em;
   }
@@ -839,6 +837,7 @@ p {
   }
 
   .photo-container {
+    padding: 1em;
     height: 5em;
   }
 
