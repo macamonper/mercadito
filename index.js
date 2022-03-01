@@ -3,6 +3,7 @@ const containerLoader = document.getElementById("pre-loader");
 const loader = document.getElementById("loader");
 const searchBar = document.getElementById("search-bar");
 const searchValue = document.getElementById("search-value");
+// Nunca usas esta variable 
 const searchBarBtn = document.getElementById("search-bar-btn");
 const dropDownMenu = document.getElementById("dropdown-cat");
 const dropdownBtn = document.getElementById ("drop-btn");
@@ -10,7 +11,9 @@ const home = document.getElementById("home");
 const resultsView = document.getElementById ("results");
 const asideProducts = document.getElementById("aside-products");
 const asideCategories = document.getElementById ("aside-categories")
+// Nunca usas esta variable 
 const main = document.querySelector("main");
+// Nunca usas esta variable 
 const productsView = document.getElementById("products-view");
 const productsCards = document.getElementById("products");
 const pageProductBtns = document.getElementById("product-page-btns");
@@ -52,6 +55,7 @@ const checkbxUsedCat = document.getElementById ("usedCat");
 const singleProductView = document.getElementById("modal");
 const cardSingleProduct = document.getElementById("single-product-container");
 const closeCard = document.getElementById("close-product");
+// Nunca usas esta variable 
 const showAsideProducts = document.getElementById("show-aside-products");
 const btnCloseAsideProducts = document.getElementById("close-aside-products");
 const btnCloseAsideCategories = document.getElementById("close-aside-categories");
@@ -60,12 +64,15 @@ const btnAsideCategories = document.getElementById("btn-show-aside-categories");
 
 
 let offset = 0
+// camelCase, no inicies variables en mayuscula
 let IDofState = "";
 let stateBoolean = false;
-
+// camelCase, no inicies variables en mayuscula
 let IDofCategory = "";
+// camelCase, no inicies variables en mayuscula
 let NameOfCategory ="";
 let offsetForCat= 0;
+// camelCase, no inicies variables en mayuscula
 let IDofStateCat = "";
 let stateCatBoolean = false;
 
@@ -78,7 +85,7 @@ let offsetForProductSort = 0;
 let offsetForCatSort = 0;
 
 //GO TO HOME
-
+// No necesitas la e aca 
 logo.onclick = (e)=>{
     home.classList.remove("hidden");
     resultsView.classList.add("hidden");
@@ -110,6 +117,7 @@ const searchProducts = (searchValue,offset) => {
     let url = `https://api.mercadolibre.com/sites/MLA/search?q=${searchValue}&offset=${offset}&limit=8`;
 
         if (checkbxShipping.checked) {
+            // Mejor usar url +=  "&shipping_cost=free"
             url = url + "&shipping_cost=free"
         }
         if (checkbxPayment.checked) {
@@ -128,6 +136,7 @@ const searchProducts = (searchValue,offset) => {
             url = url + "&official_store=all"
 
         }
+        // mejor decir if (stateBoolean) {
         if(stateBoolean === true){
             url = url + "&state=" + IDofState
         } 
@@ -225,6 +234,7 @@ const getIDofProducts = () => {
     }
 }
 
+// no uses mayusculas para los params! va en minuscula 
 const searchSingleProduct = (ID) => {
 
     fetch (`https://api.mercadolibre.com/items/${ID}`)
@@ -251,7 +261,7 @@ const searchSingleProduct = (ID) => {
 
 }
 
-
+            // No necesitas la e aca 
 closeCard.onclick = (e) => {
 
   singleProductView.classList.add("hidden");
@@ -311,7 +321,7 @@ const HTMLforSingleProduct = (data,description) => {
 btnNextProduct.onclick = (e) => {
 
     e.preventDefault()
-
+    // offset += 8
     offset = offset + 8
 
     searchProducts(searchValue.value,offset)
@@ -382,7 +392,7 @@ stateSelect.addEventListener('change',(e) => {
 });
 
 checkBoxsProducts.forEach((checkbox) => { 
-
+            // No necesitas event aca 
     checkbox.addEventListener('change', (event) => {
 
         searchProducts(searchValue.value,offset)
@@ -398,7 +408,6 @@ const searchByProductSortAsc = (searchValue,offsetForProductSort) => {
     containerLoader.style.display ="flex";
     
     loader.classList.remove ("hidden")
-
     let urlSort = (`https://api.mercadolibre.com/sites/MLA/search?q=${searchValue}&sort=price_asc&offset=${offsetForProductSort}&limit=8`);
 
     if (checkbxShipping.checked) {
@@ -445,7 +454,7 @@ const searchByProductSortAsc = (searchValue,offsetForProductSort) => {
 
     })
 }
-
+            // No necesitas la e aca 
 btnAscProducts.onclick = (e) => {
 
     btnDescProductsBoolean = false;
@@ -509,7 +518,7 @@ const searchByProductSortDesc = (searchValue,offsetForProductSort) => {
         
     })
 }
-
+            // No necesitas la e aca 
 btnDescProducts.onclick = (e) => {
 
     btnAscProductsBoolean = false;
@@ -748,7 +757,7 @@ const fetchSelectStateCat = (IDofCategory) => {
 }
 
 checkBoxsCategories.forEach((checkboxCat) => { 
-
+            // No necesitas event aca 
     checkboxCat.addEventListener('change', (event) => {
 
         searchByCategories(IDofCategory,offsetForCat)
@@ -756,7 +765,7 @@ checkBoxsCategories.forEach((checkboxCat) => {
     })
 })
 
- 
+             // No necesitas la e aca 
 stateSelectCat.addEventListener('change',(e) => {
 
     IDofStateCat = stateSelectCat.value;  
@@ -887,7 +896,7 @@ const searchByCatSortDesc = (IDofCategory,offsetForCatSort) => {
 
     })
 }
-
+            // No necesitas la e aca 
 btnDescCat.onclick = (e) => {
 
     btnAscBooleanCat = false;
@@ -948,6 +957,8 @@ btnPrevSortCat.onclick = (e) =>{
 }
 
 //SHOW MODAL OF FILTERS IN MEDIA QUERY
+
+            // No necesitas la e aca 
 btnAsideProduct.onclick = (e) =>{
     asideProducts.style.display = "block";
  
