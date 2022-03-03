@@ -5,9 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercadito Libre</title>
-
+<!-- Ojo con el tabulado  -->
 <link rel="stylesheet" href="mercadito/styles/css/styles.css">
-
+<!-- Es incorrecta esta manera de importar en html, estas haciendo un style para importar como en css. 
+Lo correcto es: 
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100&display=swap" rel="stylesheet" /> -->
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100&display=swap');
 </style>
@@ -19,15 +21,15 @@
 <body>
     
     <header>
-
+<!-- No dejes nunca un alt vacio a menos que sea una imagen decorativa (un borde por ejemplo) -->
         <img id="logo" src="mercadito/images/logo.svg" alt="">
 
         <section>
 
             <form id="search-bar">
-
+                <!-- Si no tenes label, debes tener aria-label -->
                 <input type="text" placeholder="Buscar productos, marcas y más..." id="search-value">
-                
+                <!-- Un boton que no tiene contenido de texto debe tener un aria label  -->
                 <button id ="search-bar-btn" type="submit"><i class="fas fa-search"></i></button>
             
             </form>
@@ -50,7 +52,9 @@
     </header>
 
     <main>
-
+<!-- Esta muy desprolijo el html, no dejes espacios despues de los nombres de clases, deja espacio entre atributos:
+<div id="pre-loader" class="hidden"> 
+    Mismo comentario para el resto. -->
         <div id="pre-loader"class="hidden " >
             
             <div id="loader" class="hidden "></div>
@@ -60,7 +64,7 @@
         <section id="home"  >
             
             <article class="slide">
-
+                <!-- Las imagenes llevan preferiblemente un alt antes que un aria label  -->
                 <img id= "garden"src="mercadito/images/promotions/jardin.jpg" aria-label="muebles de jardin">
             
             </article >
@@ -71,7 +75,7 @@
 
             
                 <div class="center">
-
+                    <!-- Necesitas un aria label aqui -->
                     <span id="grocery"><i class="fas fa-shopping-basket"></i></span>
                 
                     <span id="cellphone"><i class="fas fa-mobile-alt"></i></span>
@@ -83,7 +87,7 @@
             </article>
 
             <article class="slide">
-
+<!-- alt en lugar de aria label  -->
                 <img id="air-conditioner"src="mercadito/images/promotions/climatizacion.jpg" aria-label="climatizacion">
             
             </article>
@@ -105,7 +109,7 @@
             </article>
 
             <article class="slide">
-            
+            <!-- alt en lugar de aria label  -->
                 <img id="autoparts" src="mercadito/images/promotions/autopartes.jpg" aria-label="autopartes">
             
             </article>
@@ -115,7 +119,8 @@
         </section>
 
         <div id="results" class="hidden">
-    
+            <!-- Se mas prolija, usa bien los espacios:
+            <div id="filters-prod" class="cross-contain"> -->
             <div  id ="filters-prod" class=" cross-contain">
                 <button id="btn-show-aside-product">Filtros</button>
             </div>
@@ -130,6 +135,7 @@
                     <div id="show-aside-products">
 
                         <div class="cross-contain">
+                            <!-- Falta un aria label aqui -->
                         <button id="close-aside-products" >&times;</button>
 
                     </div>
@@ -152,6 +158,7 @@
                             <div>
                                 <h4>Envio</h4>
                                 <input type="checkbox" id="shipping" name="filters" value="shipping" class="check-products">
+                               <!-- El for del label debe ser igual al id del elemento  -->
                                 <label for="free-shipping">Envio gratis</label>
                             </div>
 
@@ -159,6 +166,7 @@
                                 <h4>Ubicación</h4>
 
                                 <div>
+                                    <!-- El for del label debe ser igual al id del elemento  -->
                                     <label for="state"></label>
 
                                     <select name="states" class="check-products " id="state-select" >
@@ -173,6 +181,7 @@
                                 <h4>Pago</h4>
 
                                 <input type="checkbox" id="payment" name="filters" value="payment"class="check-products">
+                                <!-- Mismo comentario aqui -->
                                 <label for="no-interest">Sin interés</label>
                             </div>
                             
@@ -182,6 +191,7 @@
                                 <div class="column">
                                     
                                     <div class="row  ">
+                                        <!-- El atributo selected no sirve para un radio, estas pensando en checked -->
                                         <input type="radio" id="all" name="filters" value="all" class="check-products" selected>
                                         <label for="all">Todas</label>
                                     </div>
@@ -202,7 +212,8 @@
                         </form>
                     </div>  
                 </aside>
-
+<!-- Es muy molesto leer con tantos saltos de linea que no cumplen funcion, no hay motivo para 
+apretar mas de un enter en html -->
                 
 
                 <div id="show-aside-categories" >
@@ -225,6 +236,7 @@
                                     <h4>Tiendas oficiales</h4>
 
                                     <input type="checkbox" id="official-store-cat" name="filters" value="official-store-cat" class="check-categories">
+                                    <!-- El for label debe ser igual al id del elemento -->
                                     <label for="official-store">Tiendas oficiales</label>
                                 </div>
 
@@ -232,6 +244,7 @@
                                 <div>
                                     <h4>Envio</h4>
                                     <input type="checkbox" id="shipping-cat" name="filters" value="shipping" class="check-categories">
+                                    <!-- El for label debe ser igual al id del elemento -->
                                     <label for="free-shipping">Envio gratis</label>
                                 </div>
 
@@ -239,6 +252,7 @@
                                     <h4>Ubicación</h4>
 
                                     <div>
+                                         <!-- El for label debe ser igual al id del elemento -->
                                         <label for="state"></label>
 
                                         <select name="states" class="check-categories" id="state-select-cat" >
@@ -251,7 +265,7 @@
                                 
                                 <div>
                                     <h4>Pago</h4>
-
+                                    <!-- El for label debe ser igual al id del elemento -->
                                     <input type="checkbox" id="payment-cat" name="filters" value="payment"class="check-categories">
                                     <label for="no-interest">Sin interés</label>
                                 </div>
@@ -290,7 +304,7 @@
 
 
                     <div id="sort-btns-product" class="row hidden" >
-                        
+                        <!-- Faltan aria label aqui -->
                         <button id="asc-product"><i class="fas fa-sort-numeric-down"></i></button>
 
                         <button id="desc-product" class="margin-left05"><i class="fas fa-sort-numeric-down-alt"></i></button>
@@ -299,7 +313,7 @@
 
 
                     <div id="sort-btns-category"  class="row hidden">
-                        
+                        <!-- Y aqui  -->
                         <button id="asc-cat"><i class="fas fa-sort-numeric-down"></i></button>
 
                         <button id="desc-cat" class="margin-left05"><i class="fas fa-sort-numeric-down-alt"></i></button>
@@ -311,7 +325,7 @@
 
 
                     <div id="product-page-btns" class="pagination hidden">
-
+<!-- Y aqui, y en toda la paginacion -->
                         <button id="prev"><i class="far fa-arrow-alt-circle-left"></i></button>
                         <button id="next"><i class="far fa-arrow-alt-circle-right"></i></button>
                     </div>
