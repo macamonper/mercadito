@@ -3,15 +3,12 @@ const containerLoader = document.getElementById("pre-loader");
 const loader = document.getElementById("loader");
 const searchBar = document.getElementById("search-bar");
 const searchValue = document.getElementById("search-value");
-const searchBarBtn = document.getElementById("search-bar-btn");
 const dropDownMenu = document.getElementById("dropdown-cat");
 const dropdownBtn = document.getElementById ("drop-btn");
 const home = document.getElementById("home");
 const resultsView = document.getElementById ("results");
 const asideProducts = document.getElementById("aside-products");
 const asideCategories = document.getElementById ("aside-categories")
-const main = document.querySelector("main");
-const productsView = document.getElementById("products-view");
 const productsCards = document.getElementById("products");
 const pageProductBtns = document.getElementById("product-page-btns");
 const btnNextProduct = document.getElementById('next');
@@ -52,34 +49,29 @@ const checkbxUsedCat = document.getElementById ("usedCat");
 const singleProductView = document.getElementById("modal");
 const cardSingleProduct = document.getElementById("single-product-container");
 const closeCard = document.getElementById("close-product");
-const showAsideProducts = document.getElementById("show-aside-products");
 const btnCloseAsideProducts = document.getElementById("close-aside-products");
 const btnCloseAsideCategories = document.getElementById("close-aside-categories");
 const btnAsideProduct = document.getElementById("btn-show-aside-product");
 const btnAsideCategories = document.getElementById("btn-show-aside-categories");
 
-
 let offset = 0
-let IDofState = "";
+let idOfState = "";
 let stateBoolean = false;
-
-let IDofCategory = "";
-let NameOfCategory ="";
+let idOfCategory = "";
+let nameOfCategory ="";
 let offsetForCat= 0;
-let IDofStateCat = "";
+let idOfStateCat = "";
 let stateCatBoolean = false;
-
 let btnAscProductsBoolean = false;
 let btnDescProductsBoolean = false;
 let btnAscBooleanCat = false;
 let btnDescBooleanCat = false;
-
 let offsetForProductSort = 0;
 let offsetForCatSort = 0;
 
 //GO TO HOME
 
-logo.onclick = (e)=>{
+logo.onclick = ()=>{
     home.classList.remove("hidden");
     resultsView.classList.add("hidden");
 }
@@ -110,32 +102,31 @@ const searchProducts = (searchValue,offset) => {
     let url = `https://api.mercadolibre.com/sites/MLA/search?q=${searchValue}&offset=${offset}&limit=8`;
 
         if (checkbxShipping.checked) {
-            url = url + "&shipping_cost=free"
+            url += "&shipping_cost=free"
         }
         if (checkbxPayment.checked) {
-            url = url + "&installments=no_interest"
+            url += "&installments=no_interest"
         }
         if(checkbxAll.checked){
             url = url
         }
         if (checkbxNew.checked) {
-            url = url + "&ITEM_CONDITION=2230284"
+            url += "&ITEM_CONDITION=2230284";
         }
         if (checkbxUsed.checked) {
-            url = url + "&ITEM_CONDITION=2230581"
+            url += "&ITEM_CONDITION=2230581";
         }
         if (checkbxStore.checked){
-            url = url + "&official_store=all"
+            url += "&official_store=all";
 
         }
-        if(stateBoolean === true){
-            url = url + "&state=" + IDofState
+        if (stateBoolean){
+            url += "&state=" + idOfState;
         } 
         
     fetch(url)
     .then(res => res.json())
     .then(data => {
-
 
         dataload()
         HTMLproducts(data.results)
@@ -164,8 +155,6 @@ searchBar.onsubmit = (e) => {
     fetchSelectState(searchValue.value);
 
     pageProductBtns.classList.remove("hidden");
-
-
 
 }
 
@@ -202,15 +191,12 @@ const HTMLproducts = (data) => {
     productsCards.innerHTML = products;
 
     getIDofProducts()
-
-
 }
 
 const getIDofProducts = () => {
     
     const cards = document.getElementsByClassName("card");
 
-    
     for (let card of cards){
 
         card.onclick = () => {
@@ -219,15 +205,13 @@ const getIDofProducts = () => {
             singleProductView.classList.remove("hidden");
             home.classList.add("hidden");
 
-
         } 
-
     }
 }
 
-const searchSingleProduct = (ID) => {
+const searchSingleProduct = (id) => {
 
-    fetch (`https://api.mercadolibre.com/items/${ID}`)
+    fetch (`https://api.mercadolibre.com/items/${id}`)
     .then (res => res.json ())
     .then (data => {
 
@@ -235,7 +219,7 @@ const searchSingleProduct = (ID) => {
 
         loader.classList.remove ("hidden")
 
-        fetch (`https://api.mercadolibre.com/items/${ID}/description`)
+        fetch (`https://api.mercadolibre.com/items/${id}/description`)
 
         .then (res => res.json ())
     
@@ -248,23 +232,17 @@ const searchSingleProduct = (ID) => {
         })
     })
 
-
 }
 
-
-closeCard.onclick = (e) => {
+closeCard.onclick = () => {
 
   singleProductView.classList.add("hidden");
   resultsView.classList.remove("hidden");
 
-
-
-
 }
 
 const HTMLforSingleProduct = (data,description) => {
-
-
+    
     cardSingleProduct.innerHTML = `
 
         <div id="card-single-product">
@@ -289,7 +267,6 @@ const HTMLforSingleProduct = (data,description) => {
                         <button id="btn-buy" data-id="${data.permalink}" >Agregar al carrito</button>
 
                     </div>
-
                 </div>
                 
                 <div id="description-box">
@@ -312,7 +289,7 @@ btnNextProduct.onclick = (e) => {
 
     e.preventDefault()
 
-    offset = offset + 8
+    offset +=8
 
     searchProducts(searchValue.value,offset)
     scrollTop()
@@ -376,7 +353,7 @@ const HTMLforStateSelect = (data) => {
  
 stateSelect.addEventListener('change',(e) => {
 
-    IDofState = stateSelect.value;  
+    idOfState = stateSelect.value;  
     stateBoolean = true;
     
 });
@@ -402,26 +379,26 @@ const searchByProductSortAsc = (searchValue,offsetForProductSort) => {
     let urlSort = (`https://api.mercadolibre.com/sites/MLA/search?q=${searchValue}&sort=price_asc&offset=${offsetForProductSort}&limit=8`);
 
     if (checkbxShipping.checked) {
-        urlSort = urlSort + "&shipping_cost=free"
+        urlSort += "&shipping_cost=free"
     }
     if (checkbxPayment.checked) {
-        urlSort= urlSort + "&installments=no_interest"
+        urlSort += "&installments=no_interest";
     }
     if(checkbxAll.checked){
         urlSort = urlSort
     }
     if (checkbxNew.checked) {
-        urlSort = urlSort + "&ITEM_CONDITION=2230284"
+        urlSort += "&ITEM_CONDITION=2230284";
     }
     if (checkbxUsed.checked) {
-        urlSort = urlSort + "&ITEM_CONDITION=2230581"
+        urlSort += "&ITEM_CONDITION=2230581";
     }
     if (checkbxStore.checked){
-        urlSort = urlSort + "&official_store=all"
+        urlSort += "&official_store=all";
 
     }
-    if(stateBoolean === true){
-        urlSort = urlSort + "&state=" + IDofState
+    if(stateBoolean){
+        urlSort += "&state=" + idOfState;
     } 
 
     fetch(urlSort)
@@ -439,22 +416,18 @@ const searchByProductSortAsc = (searchValue,offsetForProductSort) => {
         btnsPageSortCategories.classList.add("hidden");
         sortCategoryBtns.classList.add("hidden");
         pageProductBtns.classList.add("hidden");
-        btnsPageSortProducts.classList.remove("hidden");
-     
-        
+        btnsPageSortProducts.classList.remove("hidden");  
 
     })
 }
 
-btnAscProducts.onclick = (e) => {
+btnAscProducts.onclick = () => {
 
     btnDescProductsBoolean = false;
     btnAscProductsBoolean = true;
 
-
   searchByProductSortAsc(searchValue.value,offsetForProductSort)
 }
-
 
 const searchByProductSortDesc = (searchValue,offsetForProductSort) => {
 
@@ -462,41 +435,38 @@ const searchByProductSortDesc = (searchValue,offsetForProductSort) => {
     
     loader.classList.remove ("hidden")
 
-
     let urlSort = (`https://api.mercadolibre.com/sites/MLA/search?q=${searchValue}&sort=price_desc&offset=${offsetForProductSort}&limit=8`);
     
     if (checkbxShipping.checked) {
-        urlSort = urlSort + "&shipping_cost=free"
+        urlSort += "&shipping_cost=free";
     }
     if (checkbxPayment.checked) {
-        urlSort= urlSort + "&installments=no_interest"
+        urlSort += "&installments=no_interest";
     }
     if(checkbxAll.checked){
         urlSort = urlSort
     }
     if (checkbxNew.checked) {
-        urlSort = urlSort + "&ITEM_CONDITION=2230284"
+        urlSort += "&ITEM_CONDITION=2230284";
     }
     if (checkbxUsed.checked) {
-        urlSort = urlSort + "&ITEM_CONDITION=2230581"
+        urlSort += "&ITEM_CONDITION=2230581";
     }
     if (checkbxStore.checked){
-        urlSort = urlSort + "&official_store=all"
+        urlSort += "&official_store=all";
 
     }
-    if(stateBoolean === true){
-        urlSort = urlSort + "&state=" + IDofState
+    if(stateBoolean){
+        urlSort += "&state=" + idOfState;
     } 
     fetch(urlSort)
 
     .then(res => res.json())
     .then(data => {
 
-   
         dataload()
 
         HTMLproducts(data.results);
-
       
         pageCategoryBtns.classList.add("hidden");
         btnsPageSortCategories.classList.add("hidden");
@@ -510,7 +480,7 @@ const searchByProductSortDesc = (searchValue,offsetForProductSort) => {
     })
 }
 
-btnDescProducts.onclick = (e) => {
+btnDescProducts.onclick = () => {
 
     btnAscProductsBoolean = false;
 
@@ -528,12 +498,12 @@ btnNextSortProducts.onclick = (e) => {
 
     offsetForProductSort = offsetForProductSort + 8
 
-    if (btnAscProductsBoolean === true){
+    if (btnAscProductsBoolean){
 
         searchByProductSortAsc(searchValue.value,offsetForProductSort)
         scrollTop()
     }
-    if(btnDescProductsBoolean === true){
+    if(btnDescProductsBoolean){
         searchByProductSortDesc(searchValue.value,offsetForProductSort)
         scrollTop()
 
@@ -555,26 +525,19 @@ btnPrevSortProducts.onclick = (e) =>{
 
         offsetForProductSort -= 8
     }
-    if (btnAscProductsBoolean === true){
+    if (btnAscProductsBoolean){
 
         searchByProductSortAsc(searchValue.value,offsetForProductSort)
         scrollTop()
     }
-    if(btnDescProductsBoolean === true){
+    if(btnDescProductsBoolean){
 
         searchByProductSortDesc(searchValue.value,offsetForProductSort)
         scrollTop()
 
-
     }
-
-
 }
-
-
-
 //CATEGORIES
-
 
 const getCategories = () => {
 
@@ -592,7 +555,6 @@ const getCategories = () => {
 
 const HTMLdropDownMenu = (data) => {
     
-    
     const catNames = data.reduce ((acc,curr) => {
         return acc + `   
         <div class= "row category" > 
@@ -607,33 +569,27 @@ const HTMLdropDownMenu = (data) => {
     sortProductsBtns.style.display = "none";
     sortCategoryBtns.style.display = "flex";
 
-    getIDofCategory()
-
+    getidOfCategory()
 
 }
 
-const getIDofCategory = () => {
+const getidOfCategory = () => {
 
     const categories = document.getElementsByClassName("cat-name");
 
-    
     for (let category of categories){
 
         category.onclick = () => {
 
-            IDofCategory = category.dataset.id
-            NameOfCategory = category.dataset.name
+            idOfCategory = category.dataset.id
+            nameOfCategory = category.dataset.name
 
-            searchByCategories(IDofCategory,offsetForCat)
-            fetchSelectStateCat(IDofCategory)
+            searchByCategories(idOfCategory,offsetForCat)
+            fetchSelectStateCat(idOfCategory)
             dropDownMenu.classList.add("hidden")
-
-
         } 
-
     }
 }
-
 
 dropdownBtn.onclick = () => {
 
@@ -642,36 +598,35 @@ dropdownBtn.onclick = () => {
 
 }
 
-const searchByCategories = (IDofCategory,offsetForCat) => {
+const searchByCategories = (idOfCategory,offsetForCat) => {
 
     containerLoader.style.display ="flex";
     
     loader.classList.remove ("hidden")
 
-    let url = (`https://api.mercadolibre.com/sites/MLA/search?category=${IDofCategory}&offset=${offsetForCat}&limit=8`)
+    let url = (`https://api.mercadolibre.com/sites/MLA/search?category=${idOfCategory}&offset=${offsetForCat}&limit=8`)
 
         if (checkbxShippingCat.checked) {
-            url = url + "&shipping_cost=free"
+            url += "&shipping_cost=free"
         }
         if (checkbxPaymentCat.checked) {
-            url = url + "&installments=no_interest"
+            url += "&installments=no_interest";
         }
         if(checkbxAllCat.checked){
             url=url
         }
         if (checkbxNewCat.checked) {
-            url = url + "&ITEM_CONDITION=2230284"
+            url += "&ITEM_CONDITION=2230284";
         }
         if (checkbxUsedCat.checked) {
-            url = url + "&ITEM_CONDITION=2230581"
+            url += "&ITEM_CONDITION=2230581";
         }
         if (checkbxStoreCat.checked){
-            url = url + "&official_store=all"
+            url += "&official_store=all";
         }
         if(stateCatBoolean === true){
-            url = url + "&state=" + IDofStateCat
+            url += "&state=" + idOfStateCat;
         }
-
 
     fetch(url)
     
@@ -679,34 +634,28 @@ const searchByCategories = (IDofCategory,offsetForCat) => {
     .then(data => {
 
         dataload()
-
         HTMLproducts(data.results);
 
- 
         resultsView.classList.remove("hidden");
         asideCategories.classList.remove("hidden");
         asideProducts.classList.add("hidden");
         btnAsideProduct.classList.add("hidden")
         btnAsideCategories.classList.remove("hidden")
-        titleAsideCategory.innerHTML = NameOfCategory
+        titleAsideCategory.innerHTML = nameOfCategory
         pageCategoryBtns.classList.remove("hidden")
         pageProductBtns.classList.add("hidden")
-    
-
-
     })
 }
 
 //PAGING FOR CATEGORY RESULTS
 
-
 btnNextCat.onclick = (e) => {
 
     e.preventDefault()
 
-    offsetForCat = offsetForCat + 8
+    offsetForCat += 8;
 
-    searchByCategories(IDofCategory,offsetForCat)
+    searchByCategories(idOfCategory,offsetForCat)
     scrollTop()
 
 }    
@@ -724,18 +673,17 @@ btnPrevCat.onclick = (e) =>{
         offsetForCat -= 8
     }
 
-    searchByCategories(IDofCategory,offsetForCat)
+    searchByCategories(idOfCategory,offsetForCat)
     scrollTop()
-
 
 }
 
 
 //FILTERS  FOR CATEGORIES RESULTS
 
-const fetchSelectStateCat = (IDofCategory) => {
+const fetchSelectStateCat = (idOfCategory) => {
 
-    fetch(`https://api.mercadolibre.com/sites/MLA/search?category=${IDofCategory}`)
+    fetch(`https://api.mercadolibre.com/sites/MLA/search?category=${idOfCategory}`)
 
     .then(res => res.json() )
     .then(data => {
@@ -744,63 +692,57 @@ const fetchSelectStateCat = (IDofCategory) => {
 
     })
 
-
 }
 
 checkBoxsCategories.forEach((checkboxCat) => { 
 
-    checkboxCat.addEventListener('change', (event) => {
+    checkboxCat.addEventListener('change', () => {
 
-        searchByCategories(IDofCategory,offsetForCat)
+        searchByCategories(idOfCategory,offsetForCat)
 
     })
 })
-
  
-stateSelectCat.addEventListener('change',(e) => {
+stateSelectCat.addEventListener('change',() => {
 
-    IDofStateCat = stateSelectCat.value;  
+    idOfStateCat = stateSelectCat.value;  
     stateCatBoolean = true;
     
 });
 
 //SORT OF CATEGORIES RESULTS
-
-
-const searchByCatSortAsc = (IDofCategory,offsetForCatSort) => {
+const searchByCatSortAsc = (idOfCategory,offsetForCatSort) => {
 
     containerLoader.style.display ="flex";
     
     loader.classList.remove ("hidden")
 
 
-    let urlSort = (`https://api.mercadolibre.com/sites/MLA/search?category=${IDofCategory}&sort=price_asc&offset=${offsetForCatSort}&limit=8`)
+    let urlSort = (`https://api.mercadolibre.com/sites/MLA/search?category=${idOfCategory}&sort=price_asc&offset=${offsetForCatSort}&limit=8`)
 
     fetch(urlSort)
 
         if (checkbxShippingCat.checked) {
-            urlSort = urlSort + "&shipping_cost=free"
+            urlSort += "&shipping_cost=free";
         }
         if (checkbxPaymentCat.checked) {
-            urlSort = urlSort + "&installments=no_interest"
+            urlSort += "&installments=no_interest";
         }
         if(checkbxAllCat.checked){
             urlSort = urlSort
         }
         if (checkbxNewCat.checked) {
-            urlSort = urlSort + "&ITEM_CONDITION=2230284"
+            urlSort += "&ITEM_CONDITION=2230284";
         }
         if (checkbxUsedCat.checked) {
-            urlSort = urlSort + "&ITEM_CONDITION=2230581"
+            urlSort += "&ITEM_CONDITION=2230581";
         }
         if (checkbxStoreCat.checked){
-            urlSort= urlSort + "&official_store=all"
+            urlSort += "&official_store=all";
         }
         if(stateCatBoolean === true){
-            urlSort = urlSort + "&state=" + IDofStateCat
+            urlSort += "&state=" + idOfStateCat;
         }
-
-
 
     fetch(urlSort)
     .then(res => res.json())
@@ -813,13 +755,11 @@ const searchByCatSortAsc = (IDofCategory,offsetForCatSort) => {
         resultsView.classList.remove("hidden");
         asideCategories.classList.remove("hidden");
         asideProducts.classList.add("hidden");
-        titleAsideCategory.innerHTML = NameOfCategory
+        titleAsideCategory.innerHTML = nameOfCategory
         pageCategoryBtns.classList.remove("hidden")
         pageProductBtns.classList.add("hidden")
         btnAsideProduct.classList.add("hidden")
         btnAsideCategories.classList.remove("hidden")
-      
-
     })
 }
 
@@ -827,45 +767,41 @@ btnAscCat.onclick = (e) => {
 
     btnDescBooleanCat = false;
     btnAscBooleanCat = true;
-
-
-    searchByCatSortAsc(IDofCategory,offsetForCatSort)
+    searchByCatSortAsc(idOfCategory,offsetForCatSort)
 }
 
-
-const searchByCatSortDesc = (IDofCategory,offsetForCatSort) => {
+const searchByCatSortDesc = (idOfCategory,offsetForCatSort) => {
 
     containerLoader.style.display ="flex";
     
     loader.classList.remove ("hidden")
 
 
-    let urlSort = (`https://api.mercadolibre.com/sites/MLA/search?category=${IDofCategory}&sort=price_desc&offset=${offsetForCatSort}&limit=8`)
+    let urlSort = (`https://api.mercadolibre.com/sites/MLA/search?category=${idOfCategory}&sort=price_desc&offset=${offsetForCatSort}&limit=8`)
 
     fetch(urlSort)
 
         if (checkbxShippingCat.checked) {
-            urlSort = urlSort + "&shipping_cost=free"
+            urlSort += "&shipping_cost=free";
         }
         if (checkbxPaymentCat.checked) {
-            urlSort = urlSort + "&installments=no_interest"
+            urlSort += "&installments=no_interest";
         }
         if(checkbxAllCat.checked){
             urlSort = urlSort
         }
         if (checkbxNewCat.checked) {
-            urlSort = urlSort + "&ITEM_CONDITION=2230284"
+            urlSort += "&ITEM_CONDITION=2230284";
         }
         if (checkbxUsedCat.checked) {
-            urlSort = urlSort + "&ITEM_CONDITION=2230581"
+            urlSort += "&ITEM_CONDITION=2230581";
         }
         if (checkbxStoreCat.checked){
-            urlSort = urlSort + "&official_store=all"
+            urlSort += "&official_store=all";
         }
-        if(stateCatBoolean === true){
-            urlSort = urlSort + "&state=" + IDofStateCat
+        if(stateCatBoolean){
+            urlSort += "&state=" + idOfStateCat;
         }
-
 
     fetch(urlSort)
     .then(res => res.json())
@@ -878,7 +814,7 @@ const searchByCatSortDesc = (IDofCategory,offsetForCatSort) => {
         resultsView.classList.remove("hidden");
         asideCategories.classList.remove("hidden");
         asideProducts.classList.add("hidden");
-        titleAsideCategory.innerHTML = NameOfCategory
+        titleAsideCategory.innerHTML = nameOfCategory
         pageCategoryBtns.classList.remove("hidden")
         pageProductBtns.classList.add("hidden")
         btnAsideProduct.classList.add("hidden")
@@ -888,13 +824,13 @@ const searchByCatSortDesc = (IDofCategory,offsetForCatSort) => {
     })
 }
 
-btnDescCat.onclick = (e) => {
+btnDescCat.onclick = () => {
 
     btnAscBooleanCat = false;
 
     btnDescBooleanCat = true;
 
-    searchByCatSortDesc(IDofCategory,offsetForCatSort)
+    searchByCatSortDesc(idOfCategory,offsetForCatSort)
 
 }
 
@@ -908,11 +844,11 @@ btnNextSortCat.onclick = (e) => {
 
     if (btnAscBooleanCat === true){
 
-        searchByCatSortAsc(IDofCategory,offsetForCatSort)
+        searchByCatSortAsc(idOfCategory,offsetForCatSort)
         scrollTop()
     }
     if(btnDescBooleanCat === true){
-        searchByCatSortDesc(IDofCategory,offsetForCatSort)
+        searchByCatSortDesc(idOfCategory,offsetForCatSort)
         scrollTop()
 
     }
@@ -933,39 +869,33 @@ btnPrevSortCat.onclick = (e) =>{
 
         offsetForCatSort -= 8
     }
-    if (btnAscBooleanCat === true){
-        searchByCatSortAsc(IDofCategory,offsetForCatSort)
+    if (btnAscBooleanCat){
+        searchByCatSortAsc(idOfCategory,offsetForCatSort)
         scrollTop()
     }
-    if(btnDescBooleanCat === true){
-        searchByCatSortDesc(IDofCategory,offsetForCatSort)
+    if(btnDescBooleanCat){
+        searchByCatSortDesc(idOfCategory,offsetForCatSort)
         scrollTop()
-
-
     }
-
 
 }
 
 //SHOW MODAL OF FILTERS IN MEDIA QUERY
 btnAsideProduct.onclick = (e) =>{
     asideProducts.style.display = "block";
- 
+
 }
 
 btnCloseAsideProducts.onclick = (e) =>{
     asideProducts.style.display="none";
 
-
 }
 
 btnAsideCategories.onclick = (e) =>{
     asideCategories.style.display = "block";
- 
 }
 
 
 btnCloseAsideCategories.onclick = (e) =>{
     asideCategories.style.display="none";
-
 }

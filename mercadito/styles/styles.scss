@@ -3,9 +3,9 @@
 @import "components/loader";
 @import "general/typography";
 @import "components/buttons";
-@import"layout/aside";
+@import "layout/aside";
 @import "layout/main";
-@import"components/filters";
+@import "components/filters";
 @import "layout/products";
 @import "components/dropdown-menu";
 @import "components/cards";
@@ -15,33 +15,28 @@
 @import "components/home";
 @import "layout/pagination";
 
-
-
-*:focus{
-    outline: thin dotted ;
-  }
-
-  
-
-.row{
-  display: flex;
-  
+*:focus {
+  outline: thin dotted;
 }
-.column{
+
+.row {
+  display: flex;
+}
+.column {
   display: flex;
   flex-direction: column;
 }
 
-.center{
+.center {
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
 }
 
-.margin-left05{
+.margin-left05 {
   margin-left: 0.5em;
 }
 
-.hidden{
+.hidden {
   display: none;
 }

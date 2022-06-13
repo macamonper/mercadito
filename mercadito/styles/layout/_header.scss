@@ -1,90 +1,73 @@
-header{
+header {
+  height: 20vh;
+  background-color: $background-header;
+  display: flex;
+  border: 1px solid transparent;
+  box-shadow: 1px 1px 10px $separation-line;
 
-    height: 20vh;
-    background-color: $background-header;
+  img {
+    padding-left: 1em;
+    width: 7.5em;
+  }
+
+  section {
     display: flex;
-    border: 1px solid transparent;
-    box-shadow: 1px 1px 10px $separation-line;
+    flex-direction: column;
+  }
 
-    img{
-        padding-left: 1em;
-        width: 7.5em;
+  nav {
+    margin: 0.5em;
+
+    button {
+      font-weight: bold;
     }
-
-    section{
-        display: flex;
-        flex-direction: column;
-
-    }
-
-    nav{
-        margin: 0.5em;
-
-        
-        button{
-            font-weight: bold;
-        }
-    }
+  }
 }
-
 
 #search-bar {
-    display:flex;
-    flex-direction:row;
-    border:2px solid $tipography;
-    border-radius: 2px;
-    width: 40em;
-    height: 2em;
-    margin:2em 1em 0em ;
+  display: flex;
+  flex-direction: row;
+  border: 2px solid $tipography;
+  border-radius: 2px;
+  width: 40em;
+  height: 2em;
+  margin: 2em 1em 0em;
 
-    input{
-        padding: 0.7em;
-        border-radius: 0;
-
-
-    }
+  input {
+    padding: 0.7em;
+    border-radius: 0;
+  }
 }
 
-@media (min-width:320px) and (max-width:460px) {
+@media (min-width: 320px) and (max-width: 460px) {
+  header {
+    height: 6em;
+  }
+  #logo {
+    width: 4em;
+    padding: 0;
+  }
+  #search-bar {
+    width: 15em;
+    margin: 2em 0em 0em;
 
-    header{
-        height: 6em;
-
-
+    input {
+      padding: 0em;
+      width: 100%;
     }
-    #logo{
-      width:4em;
-      padding: 0;
-      
-    }
-    #search-bar{
+  }
 
-        width:15em;
-        margin:2em 0em 0em;
-        
-        input{
-            padding: 0em;
-            width: 100%;
-        }
-    }
+  nav {
+    margin: 0;
+  }
 
-    nav{
-        margin: 0;
-    }
-
-    ::placeholder{
-        font-size: 0.7rem;
-    }
-
-    
-
+  ::placeholder {
+    font-size: 0.7rem;
+  }
 }
 
-@media (min-width:769px) and (max-width:1024px) {
-
-    #logo{
-        width:10em;
-        
-    }
-
+@media (min-width: 769px) and (max-width: 1024px) {
+  #logo {
+    width: 10em;
+  }
 }

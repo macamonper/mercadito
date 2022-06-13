@@ -1,86 +1,73 @@
-#logo{
-    cursor: pointer;
+#logo {
+  cursor: pointer;
 }
-.slide{
-    
-    height: 50vh;
-    cursor: pointer;
+.slide {
+  height: 50vh;
+  cursor: pointer;
 
-    img{
-        height: 100%;
-        width: 100%;
-    }
+  img {
+    height: 100%;
+    width: 100%;
+  }
 }
 
-.category-circle{
+.category-circle {
+  height: 30vh;
+  margin: 1em;
 
-    height: 30vh;
+  h3 {
     margin: 1em;
+  }
+  button {
+    @include button;
+    margin: 1em;
+    height: 5em;
+    width: 5em;
+    border-radius: 50%;
+    background-color: $separation-line;
+  }
+  span {
+    margin: 1em;
+    height: 5em;
+    width: 5em;
+    border-radius: 50%;
+    background-color: $separation-line;
+    border: 1px solid transparent;
+    color: $tipography;
 
-    h3{
-        margin: 1em;
+    i {
+      margin-top: auto;
+
+      font-size: 2em;
+      padding-left: 0.6em;
+      padding-top: 0.6em;
     }
-    button{
-
-        @include button;
-        margin: 1em;
-        height: 5em;
-        width: 5em;
-        border-radius: 50%;
-        background-color: $separation-line;
-
-    }
-    span{
-        margin: 1em;
-        height: 5em;
-        width: 5em;
-        border-radius: 50%;
-        background-color: $separation-line;
-        border:1px solid transparent;
-        color:$tipography;
-
-        i{
-            margin-top:auto;
-
-            font-size: 2em;
-            padding-left: 0.6em;
-            padding-top: 0.6em;
-        }
-    }
-
+  }
 }
 
-@media (min-width:320px) and (max-width:460px) {
-    
-    .slide{
-        height: 20vh;
-        width: 100%;
+@media (min-width: 320px) and (max-width: 460px) {
+  .slide {
+    height: 20vh;
+    width: 100%;
+  }
+
+  .category-circle {
+    height: 10vh;
+
+    h3 {
+      font-size: 0.6rem;
     }
-    
-    .category-circle{
 
-        height: 10vh;
+    span {
+      height: 1.5em;
+      width: 1.5em;
+      display: flex;
 
-        h3{
-            font-size: 0.6rem;
-            
-        }
-
-        span{
-            
-            height: 1.5em;
-            width: 1.5em;
-            display: flex; 
-        
-            i{
-
-
-                font-size: 0.6rem;
-                margin-bottom: auto;
-                padding-bottom: 0.4em;
-              
-            }
-        }
-        
+      i {
+        font-size: 0.6rem;
+        margin-bottom: auto;
+        padding-bottom: 0.4em;
+      }
     }
+  }
 }

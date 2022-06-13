@@ -1,32 +1,21 @@
-
-#products-view{
-    border-radius: 10px;
-    margin: 2.5em 0em; 
-    width: 75%;
-
+#products-view {
+  border-radius: 10px;
+  margin: 2.5em 0em;
+  width: 75%;
 }
 
-#products{
-
-    background-color: #ffffff;
-    border-radius: 10px;
-
+#products {
+  background-color: #ffffff;
+  border-radius: 10px;
 }
 
-@media (min-width:320px) and (max-width:460px) {
-
-    
-
-  #products{
-
+@media (min-width: 320px) and (max-width: 460px) {
+  #products {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding:  0 2em;
+    padding: 0 2em;
     width: 100%;
     background-color: $background-products;
-    }
-      
-  
-
+  }
 }
