@@ -1,100 +1,86 @@
-@mixin cards  {
-
-    border: 2px solid transparent;
-    padding: 0.5em 0.5em;
-    border-bottom: 0.5px solid $separation-line;
-    margin: 0.5em;
-    
+@mixin cards {
+  border: 2px solid transparent;
+  padding: 0.5em 0.5em;
+  border-bottom: 0.5px solid $separation-line;
+  margin: 0.5em;
 }
 
-.card{
+.card {
+  @include cards;
+  height: 40vh;
+  display: flex;
+  cursor: pointer;
 
-@include cards;
-    height: 40vh;
-    display: flex;
-    cursor: pointer;
+  .card-padding {
+    padding: 0.5em;
+  }
 
-    .card-padding{
-        padding: 0.5em;
-    }
+  h2 {
+    font-size: 1.2rem;
+    margin: 1em 0;
+    margin-bottom: 1em;
+    font-weight: 600;
+  }
 
-    h2{
-        font-size: 1.2rem;
-        margin: 1em 0;
-        margin-bottom: 1em;
-        font-weight:600;
-        
-    }
-
-    h3{
-        font-size: 1.5rem;
-        margin: 2.5em 0;
-        font-weight: 700;
-
-    }
-
-
+  h3 {
+    font-size: 1.5rem;
+    margin: 2.5em 0;
+    font-weight: 700;
+  }
 }
 
-.img-container{
+.img-container {
+  height: 100%;
+  width: 50%;
+  background-color: #ffffff;
+  overflow: hidden;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+
+  img {
     height: 100%;
-    width: 50%;
+    border-radius: 2px;
+  }
+}
+
+.free {
+  color: $free_shipping;
+}
+
+@media (min-width: 320px) and (max-width: 460px) {
+  .card {
+    height: auto;
+    width: 100%;
+    padding-right: 0;
+    padding-bottom: 1em;
     background-color: #ffffff;
-    overflow: hidden;
-    display: flex;
-    align-content: center;
-    justify-content: center;
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px $shadow;
 
-    img{
-        height: 100%;
+    .card-padding {
+      padding: 0em 0.5em 0em 0em;
+    }
+    h2 {
+      font-size: 0.58rem;
+      margin: 0em 0.5em 0.5em;
+    }
+    p {
+      font-size: 0.4rem;
+    }
+    h3 {
+      font-size: 0.5rem;
+      margin: 0.5em;
+    }
+
+    .img-container {
+      height: 5em;
+      margin-right: 1em;
+
+      img {
+        object-fit: contain;
         border-radius: 2px;
+      }
     }
-
-
-
-}
-
-.free{
-    color:$free_shipping
-}
-
-@media (min-width:320px) and (max-width:460px) {
-
-    .card{
-        height:auto;
-        width: 100%;
-        padding-right: 0;
-        padding-bottom: 1em;
-        background-color: #ffffff;
-        border-radius: 3px;
-        box-shadow: 3px 3px 5px $shadow;
-
-
-        .card-padding{
-            padding: 0em 0.5em 0em 0em;
-        }
-        h2{
-            font-size: 0.58rem;
-            margin: 0em 0.5em 0.5em;
-        }
-        p{
-            font-size: 0.4rem;
-        }
-        h3{
-            font-size: 0.5rem;
-            margin: 0.5em;
-        }
-
-        .img-container{
-            height: 5em;
-            margin-right: 1em;
-            
-            img{
-                object-fit:contain;
-                border-radius: 2px;
-            }
-        
-        }
-        
-    }
+  }
 }

@@ -1,25 +1,24 @@
-input{
+input {
   cursor: pointer;
 }
 
 #search-value {
-    flex-grow:2;
-    border:1px solid #ffffff;
-
+  flex-grow: 2;
+  border: 1px solid #ffffff;
 }
-*:focus{
+*:focus {
   outline: thin dotted;
 }
 
-.check{
+.check {
   margin-left: 1em;
 }
 
-#all,#new,#used{
+#all,
+#new,
+#used {
   margin-bottom: 1.5em;
 }
 
-@media (min-width:320px) and (max-width:460px) {
-  
-
+@media (min-width: 320px) and (max-width: 460px) {
 }

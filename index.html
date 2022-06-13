@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercadito Libre</title>
 
-<link rel="stylesheet" href="mercadito/styles/css/styles.css">
+    <link rel="stylesheet" href="mercadito/styles/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100&display=swap" rel="stylesheet" />
 
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100&display=swap');
-</style>
-    
-<script src="https://kit.fontawesome.com/5bbce2ab5d.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5bbce2ab5d.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-    
     <header>
 
-        <img id="logo" src="mercadito/images/logo.svg" alt="">
+        <img id="logo" src="mercadito/images/logo.svg" alt="mercaditoLibre">
 
         <section>
 
             <form id="search-bar">
 
                 <input type="text" placeholder="Buscar productos, marcas y más..." id="search-value">
-                
-                <button id ="search-bar-btn" type="submit"><i class="fas fa-search"></i></button>
-            
+
+                <button id="search-bar-btn" type="submit" aria-label="search button"><i
+                        class="fas fa-search"></i></button>
+
             </form>
 
             <nav>
@@ -51,41 +49,41 @@
 
     <main>
 
-        <div id="pre-loader"class="hidden " >
-            
+        <div id="pre-loader" class="hidden ">
+
             <div id="loader" class="hidden "></div>
-        
+
         </div>
-        
-        <section id="home"  >
-            
+
+        <section id="home">
+
             <article class="slide">
 
-                <img id= "garden"src="mercadito/images/promotions/jardin.jpg" aria-label="muebles de jardin">
-            
-            </article >
+                <img id="garden" src="mercadito/images/promotions/jardin.jpg" aria-label="muebles de jardin">
+
+            </article>
 
             <article class="category-circle ">
-            
+
                 <h3 class="center">Conoce más categorías</h3>
 
-            
+
                 <div class="center">
 
                     <span id="grocery"><i class="fas fa-shopping-basket"></i></span>
-                
+
                     <span id="cellphone"><i class="fas fa-mobile-alt"></i></span>
-                
+
                     <span id="children"><i class="fas fa-robot"></i></span>
-                
+
                 </div>
-            
+
             </article>
 
             <article class="slide">
 
-                <img id="air-conditioner"src="mercadito/images/promotions/climatizacion.jpg" aria-label="climatizacion">
-            
+                <img id="air-conditioner" src="mercadito/images/promotions/climatizacion.jpg" alt="climatizacion">
+
             </article>
 
             <article class="category-circle">
@@ -95,124 +93,129 @@
                 <div class="center">
 
                     <span id="credit-card"><i class="far fa-credit-card"></i></span>
-                    
+
                     <span id="lungs"><i class="fas fa-lungs"></i></span>
-                    
+
                     <span id="bitcoin"><i class="fab fa-bitcoin"></i></span>
-                
+
                 </div>
-            
+
             </article>
 
             <article class="slide">
-            
-                <img id="autoparts" src="mercadito/images/promotions/autopartes.jpg" aria-label="autopartes">
-            
+
+                <img id="autoparts" src="mercadito/images/promotions/autopartes.jpg" alt="autopartes">
+
             </article>
-    
-        
-        
+
+
+
         </section>
 
         <div id="results" class="hidden">
-    
-            <div  id ="filters-prod" class=" cross-contain">
+
+            <div id="filters-prod" class="cross-contain">
                 <button id="btn-show-aside-product">Filtros</button>
             </div>
-            <div id ="filters-cat" class="cross-contain">
+            <div id="filters-cat" class="cross-contain">
                 <button id="btn-show-aside-categories">Filtros</button>
             </div>
 
             <div class="row ">
-            
+
                 <aside id="aside-products" class="row">
-                    
+
                     <div id="show-aside-products">
 
                         <div class="cross-contain">
-                        <button id="close-aside-products" >&times;</button>
 
-                    </div>
-                        
-                    <div class="filters">
-                        <h2 id="search-value-product-title"></h2>
+                            <button id="close-aside-products" aria-label="close">&times;</button>
 
-                        <h3>Filtros</h3>
+                        </div>
 
-                        <form>
+                        <div class="filters">
+                            <h2 id="search-value-product-title"></h2>
 
-                            <div>
-                                <h4>Tiendas oficiales</h4>
+                            <h3>Filtros</h3>
 
-                                <input type="checkbox" id="official-store" name="filters" value="official-store" class="check-products">
-                                <label for="official-store">Tiendas oficiales</label>
-                            </div>
-
-
-                            <div>
-                                <h4>Envio</h4>
-                                <input type="checkbox" id="shipping" name="filters" value="shipping" class="check-products">
-                                <label for="free-shipping">Envio gratis</label>
-                            </div>
-
-                            <div>
-                                <h4>Ubicación</h4>
+                            <form>
 
                                 <div>
-                                    <label for="state"></label>
+                                    <h4>Tiendas oficiales</h4>
 
-                                    <select name="states" class="check-products " id="state-select" >
-                                        <option value="none">Selecciona tu ubicación</option>
-
-                                    </select>
+                                    <input type="checkbox" id="official-store" name="filters" value="official-store"
+                                        class="check-products">
+                                    <label for="official-store">Tiendas oficiales</label>
                                 </div>
-                                    
-                            </div>
-                            
-                            <div>
-                                <h4>Pago</h4>
 
-                                <input type="checkbox" id="payment" name="filters" value="payment"class="check-products">
-                                <label for="no-interest">Sin interés</label>
-                            </div>
-                            
-                            <div class="column">
-                                <h4>Condicion</h4>
+
+                                <div>
+                                    <h4>Envio</h4>
+                                    <input type="checkbox" id="shipping" name="filters" value="shipping"
+                                        class="check-products">
+                                    <label for="shipping">Envio gratis</label>
+                                </div>
+
+                                <div>
+                                    <h4>Ubicación</h4>
+
+                                    <div>
+                                        <label for="state-select"></label>
+
+                                        <select name="states" class="check-products " id="state-select">
+                                            <option value="none">Selecciona tu ubicación</option>
+
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <div>
+                                    <h4>Pago</h4>
+
+                                    <input type="checkbox" id="payment" name="filters" value="payment"
+                                        class="check-products">
+                                    <label for="payment">Sin interés</label>
+                                </div>
 
                                 <div class="column">
-                                    
-                                    <div class="row  ">
-                                        <input type="radio" id="all" name="filters" value="all" class="check-products" selected>
-                                        <label for="all">Todas</label>
-                                    </div>
-                                    <div class="row">
-                                        <input type="radio" id="new" name="filters" value="new" class="check-products">
-                                        <label for="new">Nuevo</label>
+                                    <h4>Condicion</h4>
+
+                                    <div class="column">
+
+                                        <div class="row  ">
+                                            <input type="radio" id="all" name="filters" value="all"
+                                                class="check-products">
+                                            <label for="all">Todas</label>
+                                        </div>
+                                        <div class="row">
+                                            <input type="radio" id="new" name="filters" value="new"
+                                                class="check-products">
+                                            <label for="new">Nuevo</label>
+                                        </div>
+
+                                        <div class="row">
+                                            <input type="radio" id="used" name="filters" value="used"
+                                                class="check-products">
+                                            <label for="used">Usado</label>
+                                        </div>
                                     </div>
 
-                                    <div class="row">
-                                        <input type="radio" id="used" name="filters" value="used" class="check-products">
-                                        <label for="used">Usado</label>
-                                    </div>
                                 </div>
-                            
-                            </div>
 
 
-                        </form>
-                    </div>  
+                            </form>
+                        </div>
                 </aside>
 
-                
+                <div id="show-aside-categories">
 
-                <div id="show-aside-categories" >
-        
-                    <aside id="aside-categories"  class="row">
-                    
+                    <aside id="aside-categories" class="row">
+
                         <div class="cross-contain">
-                            <button id="close-aside-categories" >&times;</button>
+                            <button id="close-aside-categories">&times;</button>
                         </div>
-                        
+
                         <div class="filters">
 
                             <h2 id="category-title">categorias</h2>
@@ -224,15 +227,17 @@
                                 <div>
                                     <h4>Tiendas oficiales</h4>
 
-                                    <input type="checkbox" id="official-store-cat" name="filters" value="official-store-cat" class="check-categories">
-                                    <label for="official-store">Tiendas oficiales</label>
+                                    <input type="checkbox" id="official-store-cat" name="filters"
+                                        value="official-store-cat" class="check-categories">
+                                    <label for="official-store-cat">Tiendas oficiales</label>
                                 </div>
 
 
                                 <div>
                                     <h4>Envio</h4>
-                                    <input type="checkbox" id="shipping-cat" name="filters" value="shipping" class="check-categories">
-                                    <label for="free-shipping">Envio gratis</label>
+                                    <input type="checkbox" id="shipping-cat" name="filters" value="shipping"
+                                        class="check-categories">
+                                    <label for="shipping-cat">Envio gratis</label>
                                 </div>
 
                                 <div>
@@ -241,41 +246,45 @@
                                     <div>
                                         <label for="state"></label>
 
-                                        <select name="states" class="check-categories" id="state-select-cat" >
+                                        <select name="state-select-cat" class="check-categories" id="state-select-cat">
                                             <option value="none">Selecciona tu ubicación</option>
 
                                         </select>
                                     </div>
-                                        
+
                                 </div>
-                                
+
                                 <div>
                                     <h4>Pago</h4>
 
-                                    <input type="checkbox" id="payment-cat" name="filters" value="payment"class="check-categories">
+                                    <input type="checkbox" id="payment-cat" name="payment-cat" value="payment"
+                                        class="check-categories">
                                     <label for="no-interest">Sin interés</label>
                                 </div>
-                                
+
                                 <div class="column">
                                     <h4>Condicion</h4>
 
                                     <div class="column">
-                                        
+
                                         <div class="row ">
-                                            <input type="radio" id="all-cat" name="filters" value="all" class="check-categories" selected>
+                                            <input type="radio" id="all-cat" name="filters" value="all"
+                                                class="check-categories" selected>
                                             <label for="all">Todas</label>
                                         </div>
                                         <div class="row">
-                                            <input type="radio" id="newCat" name="filters" value="new" class="check-categories">
+                                            <input type="radio" id="newCat" name="filters" value="new"
+                                                class="check-categories">
                                             <label for="new">Nuevo</label>
                                         </div>
 
                                         <div class="row">
-                                            <input type="radio" id="usedCat" name="filters" value="used" class="check-categories">
+                                            <input type="radio" id="usedCat" name="filters" value="used"
+                                                class="check-categories">
                                             <label for="used">Usado</label>
                                         </div>
                                     </div>
-                                
+
                                 </div>
 
 
@@ -284,75 +293,76 @@
                     </aside>
 
                 </div>
-                
 
-                <section id="products-view" >
+                <section id="products-view">
 
+                    <div id="sort-btns-product" class="row hidden">
 
-                    <div id="sort-btns-product" class="row hidden" >
-                        
-                        <button id="asc-product"><i class="fas fa-sort-numeric-down"></i></button>
+                        <button id="asc-product" aria-label="ascendent price"><i
+                                class="fas fa-sort-numeric-down"></i></button>
 
-                        <button id="desc-product" class="margin-left05"><i class="fas fa-sort-numeric-down-alt"></i></button>
-
-                    </div>
-
-
-                    <div id="sort-btns-category"  class="row hidden">
-                        
-                        <button id="asc-cat"><i class="fas fa-sort-numeric-down"></i></button>
-
-                        <button id="desc-cat" class="margin-left05"><i class="fas fa-sort-numeric-down-alt"></i></button>
+                        <button id="desc-product" class="margin-left05" aria-label="descendent price"><i
+                                class="fas fa-sort-numeric-down-alt"></i></button>
 
                     </div>
 
+                    <div id="sort-btns-category" class="row hidden">
+
+                        <button id="asc-cat" aria-label="ascendent price"><i
+                                class="fas fa-sort-numeric-down"></i></button>
+
+                        <button id="desc-cat" class="margin-left05" aria-label="descendent price"><i
+                                class="fas fa-sort-numeric-down-alt"></i></button>
+
+                    </div>
 
                     <div id="products"></div>
 
-
                     <div id="product-page-btns" class="pagination hidden">
 
-                        <button id="prev"><i class="far fa-arrow-alt-circle-left"></i></button>
-                        <button id="next"><i class="far fa-arrow-alt-circle-right"></i></button>
+                        <button id="prev" aria-label="previous page"><i
+                                class="far fa-arrow-alt-circle-left"></i></button>
+                        <button id="next" aria-label="next page"><i class="far fa-arrow-alt-circle-right"></i></button>
                     </div>
 
                     <div id="product-sort-page-btns" class="pagination hidden">
 
-                        <button id="prev-sort"><i class="far fa-arrow-alt-circle-left"></i></button>
-                        <button id="next-sort"><i class="far fa-arrow-alt-circle-right"></i></button>
+                        <button id="prev-sort" aria-label="previous page"><i
+                                class="far fa-arrow-alt-circle-left"></i></button>
+                        <button id="next-sort" aria-label="next page"><i
+                                class="far fa-arrow-alt-circle-right"></i></button>
                     </div>
 
-
                     <div id="category-page-btns" class="pagination hidden">
-                        <button id="prev-cat"><i class="far fa-arrow-alt-circle-left"></i></button>
-                        <button id="next-cat"><i class="far fa-arrow-alt-circle-right"></i></button>
+                        <button id="prev-cat" aria-label="previous page"><i
+                                class="far fa-arrow-alt-circle-left"></i></button>
+                        <button id="next-cat" aria-label="next page"><i
+                                class="far fa-arrow-alt-circle-right"></i></button>
 
                     </div>
 
                     <div id="category-sort-page-btns" class="pagination hidden">
-                        <button id="prev-sort-cat"><i class="far fa-arrow-alt-circle-left"></i></button>
-                        <button id="next-sort-cat"><i class="far fa-arrow-alt-circle-right"></i></button>
+                        <button id="prev-sort-cat" aria-label="previous page"><i
+                                class="far fa-arrow-alt-circle-left"></i></button>
+                        <button id="next-sort-cat" aria-label="next page"><i
+                                class="far fa-arrow-alt-circle-right"></i></button>
 
                     </div>
-                        
+
                 </section>
 
-            
             </div>
-                
-                
+
             <section id="modal" class=" hidden ">
-                
+
                 <article class="column">
 
-                    <button id="close-product">&times;</button>
+                    <button id="close-product" aria-label="close">&times;</button>
 
-                    <div id= "single-product-container" class="column">
+                    <div id="single-product-container" class="column">
                     </div>
 
-
                 </article>
-
 
             </section>
         </div>
@@ -362,4 +372,5 @@
     <script src="index.js"></script>
 
 </body>
+
 </html>
